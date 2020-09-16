@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Template_Domain.DTOs
 {
-    class Estudiante
+    public class EstudianteDTO
     {
     }
 }

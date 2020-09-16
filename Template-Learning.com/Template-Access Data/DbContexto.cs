@@ -22,7 +22,7 @@ namespace Template_Access_Data
             });
         }
         public DbSet<Estudiante> Estudiante { get; set; }
-        //public DbSet<Curso> Curso { get; set; }
-        //public DbSet<Profesor> Profesor { get; set; }
+        public DbSet<Curso> Curso { get; set; }
+        public DbSet<Profesor> Profesor { get; set; }
     }
 }
