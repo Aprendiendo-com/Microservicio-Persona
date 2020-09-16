@@ -12,7 +12,7 @@ namespace Template_Domain.Commands
 
         List<T> Traer<T>() where T : class;
 
-        T Agregar<T>(T entity) where T : class;
+        T Agregar<T>(T entity) where T : class; //??? revisar uso 
 
         void Update<T>(T entity) where T : class;
         void Delete<T>(T entity) where T : class;
