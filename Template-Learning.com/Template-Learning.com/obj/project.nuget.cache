@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "oF+FrRYvlG1MWxpAJA5cWGcc9KfumiGTFPvJpBdVj1gf7MtCSIt8L4L/2mns0y3XHikIPJl8kwUCHwQ+rsuZzg==",
+  "dgSpecHash": "luTDsdDdS3dNj0aqpAuBwo07NRtmKnDwtBrFvx3E8v4WW6J1Hq2+ez7gMVLlhySJ+MXzs+CcKfFmHisJaUxANQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\octa\\source\\repos\\Template-Learning.com\\Template-Learning.com\\Template-Learning.com.csproj",
+  "projectFilePath": "C:\\Users\\octa\\Template\\Template-Learning.com\\Template-Learning.com\\Template-Learning.com.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\octa\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\octa\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",

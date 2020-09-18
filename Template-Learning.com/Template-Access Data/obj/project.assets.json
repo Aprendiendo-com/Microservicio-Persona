@@ -5767,11 +5767,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\octa\\source\\repos\\Template-Learning.com\\Template-Access Data\\Template-Access Data.csproj",
+      "projectUniqueName": "C:\\Users\\octa\\Template\\Template-Learning.com\\Template-Access Data\\Template-Access Data.csproj",
       "projectName": "Template-Access Data",
-      "projectPath": "C:\\Users\\octa\\source\\repos\\Template-Learning.com\\Template-Access Data\\Template-Access Data.csproj",
+      "projectPath": "C:\\Users\\octa\\Template\\Template-Learning.com\\Template-Access Data\\Template-Access Data.csproj",
       "packagesPath": "C:\\Users\\octa\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\octa\\source\\repos\\Template-Learning.com\\Template-Access Data\\obj\\",
+      "outputPath": "C:\\Users\\octa\\Template\\Template-Learning.com\\Template-Access Data\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\octa\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -5787,11 +5787,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\octa\\source\\repos\\Template-Learning.com\\Template-Application\\Template-Application.csproj": {
-              "projectPath": "C:\\Users\\octa\\source\\repos\\Template-Learning.com\\Template-Application\\Template-Application.csproj"
+            "C:\\Users\\octa\\Template\\Template-Learning.com\\Template-Application\\Template-Application.csproj": {
+              "projectPath": "C:\\Users\\octa\\Template\\Template-Learning.com\\Template-Application\\Template-Application.csproj"
             },
-            "C:\\Users\\octa\\source\\repos\\Template-Learning.com\\Template-Domain\\Template-Domain.csproj": {
-              "projectPath": "C:\\Users\\octa\\source\\repos\\Template-Learning.com\\Template-Domain\\Template-Domain.csproj"
+            "C:\\Users\\octa\\Template\\Template-Learning.com\\Template-Domain\\Template-Domain.csproj": {
+              "projectPath": "C:\\Users\\octa\\Template\\Template-Learning.com\\Template-Domain\\Template-Domain.csproj"
             }
           }
         }
