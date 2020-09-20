@@ -29,7 +29,7 @@ namespace Microservicio_Persona
         {
             services.AddControllers();
             var connectionString = Configuration.GetSection("ConnectionString").Value; //busca las configuraciones del sistema
-            services.AddDbContext<DbContexto>(options => options.UseSqlServer(connectionString));
+            services.AddDbContext<DbContexto>(options => options.UseSqlServer(connectionString,x => x.MigrationsAssembly("Microservicio-Persona")));
 
         }
 
