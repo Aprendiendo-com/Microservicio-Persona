@@ -4,8 +4,9 @@ using System.Text;
 
 namespace Microservicio_Persona.Domain.Entities
 {
-    public class Cuestionario
+   public class Especialidad
     {
-       
+       public int EspecialidadId { get; set; }
+       public string Descripcion { get; set; }
     }
 }

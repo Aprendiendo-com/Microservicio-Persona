@@ -4,7 +4,9 @@ using System.Text;
 
 namespace Microservicio_Persona.Domain.DTOs
 {
-    public class EstudianteDTO
+   public class EspecialidadDTOs
     {
+        public int EspecialidadId { get; set; }
+        public string Descripcion { get; set; }
     }
 }
