@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Microservicio_Persona.AccessData.Command
 {
-   public class GenericRepository : IGenericsRepository
+   public class GenericsRepository : IGenericsRepository
     {
         protected DbContexto Context;
-        public GenericRepository(DbContexto contexto)
+        public GenericsRepository(DbContexto contexto)
         {
             this.Context = contexto;
         }

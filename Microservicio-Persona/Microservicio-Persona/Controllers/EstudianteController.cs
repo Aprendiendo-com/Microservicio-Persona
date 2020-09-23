@@ -30,6 +30,12 @@ namespace Microservicio_Persona.Controllers
             }
         }
 
+        //[Route("Dar de baja a un estudiante")]
+        //[HttpGet]
+
+
+
+
 
     }
 
