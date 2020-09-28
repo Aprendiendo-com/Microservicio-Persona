@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Microservicio_Persona.AccessData.Migrations
+namespace Microservicio_Persona.Migrations
 {
-    public partial class init : Migration
+    public partial class Mig1_Micro_Persona : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -56,6 +56,17 @@ namespace Microservicio_Persona.AccessData.Migrations
                         principalTable: "Especialidad",
                         principalColumn: "EspecialidadId",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Estudiante",
+                columns: new[] { "EstudianteID", "Apellido", "Email", "Legajo", "Nombre" },
+                values: new object[,]
+                {
+                    { 1, "olivera", "pepeolivera@hotmail.com>", 1233, "pepe" },
+                    { 2, "gonzalez", "pepag@hotmail.com>", 1234, "pepa" },
+                    { 3, "perez", "juanperez@hotmail.com>", 1235, "juan" },
+                    { 4, "lopez", "ariellopez@hotmail.com>", 1236, "ariel" }
                 });
 
             migrationBuilder.InsertData(

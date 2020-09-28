@@ -45,7 +45,7 @@ namespace Microservicio_Persona.AccessData.Queries
         {
             var db = new QueryFactory(connection, sqlKataCompiler);
 
-            var query = db.Query("Profesores")
+            var query = db.Query("Profesor")
                         .Select("ProfesorId","Nombre", "Apellido","Email","Especialidad")
                         .Where("Especialidad", "=", especialidad);
 
@@ -76,7 +76,7 @@ namespace Microservicio_Persona.AccessData.Queries
        {
            var db = new QueryFactory(connection, sqlKataCompiler);
 
-            var query = db.Query("Profesores");
+            var query = db.Query("Profesor");
 
             var result = query.Get<ProfesorDTOs>();
 

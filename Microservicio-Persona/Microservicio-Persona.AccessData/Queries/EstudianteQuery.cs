@@ -28,7 +28,7 @@ namespace Microservicio_Persona.AccessData.Queries
         {
           var db = new QueryFactory(connection, sqlKataCompiler);
 
-            var query = db.Query("Estudiantes");
+            var query = db.Query("Estudiante");
 
             var result = query.Get<EstudianteDTOs>();
 
@@ -38,7 +38,7 @@ namespace Microservicio_Persona.AccessData.Queries
         public EstudianteDTOs GetById(int EstudianteId)
         {
             var db = new QueryFactory(connection, sqlKataCompiler);
-            var estudiante = db.Query("Estudiantes")
+            var estudiante = db.Query("Estudiante")
                 .Select("EstudianteID", "Nombre", "Apellido","Email","Legajo")
                 .Where("EstudianteID", "=", EstudianteId)
                 .FirstOrDefault<EstudianteDTOs>();

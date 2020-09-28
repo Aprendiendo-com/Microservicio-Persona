@@ -30,8 +30,15 @@ namespace Microservicio_Persona.AccessData
                 entity.HasData(new Profesor { ProfesorId = 2, Nombre = "sergio", Apellido = "conde", Email = "sergiounaj@gmail.com>", Especialidad = "Documentacion" });
                 entity.HasData(new Profesor { ProfesorId = 3, Nombre = "octavio", Apellido = "jorge", Email = "octaviojorge37@gmail.com>", Especialidad = "Programacion orientada a objetos" });
                 entity.HasData(new Profesor { ProfesorId = 4, Nombre = "leonardo", Apellido = "Amet", Email = "leonardoAmet@gmail.com>", Especialidad = "complejidad temporal" });
+            });
 
-
+            modelBuilder.Entity<Estudiante>(entity =>
+            {
+                entity.ToTable("Estudiante");
+                entity.HasData(new Estudiante { EstudianteID = 1, Nombre = "pepe", Apellido = "olivera", Email = "pepeolivera@hotmail.com>", Legajo = 1233 });
+                entity.HasData(new Estudiante { EstudianteID = 2, Nombre = "pepa", Apellido = "gonzalez", Email = "pepag@hotmail.com>", Legajo = 1234 });
+                entity.HasData(new Estudiante { EstudianteID = 3, Nombre = "juan", Apellido = "perez", Email = "juanperez@hotmail.com>", Legajo = 1235 });
+                entity.HasData(new Estudiante { EstudianteID = 4, Nombre = "ariel", Apellido = "lopez", Email = "ariellopez@hotmail.com>", Legajo = 1236 });
             });
 
         }

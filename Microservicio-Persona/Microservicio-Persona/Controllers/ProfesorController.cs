@@ -36,7 +36,7 @@ namespace Microservicio_Persona.Controllers
             }
         }
 
-        [Route("obtenerProfesorByEspecialidad")]
+        [Route("obtenerProfesorByEspecialidad")] //Revisar la relacion entidad-profesor para corregirlo
         [HttpGet]
         public IActionResult GetProfesorEspecialidad(string especialidad)
         {
@@ -49,12 +49,7 @@ namespace Microservicio_Persona.Controllers
                 return BadRequest(e.Message);
             }
         }
-        // GET: api/<ProfesorController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        
 
         // GET api/<ProfesorController>/5
         [HttpGet("{id}")]

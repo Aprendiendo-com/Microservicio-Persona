@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Microservicio_Persona.AccessData.Migrations
+namespace Microservicio_Persona.Migrations
 {
     [DbContext(typeof(DbContexto))]
-    [Migration("20200921020709_init")]
-    partial class init
+    [Migration("20200928200951_Mig1_Micro_Persona")]
+    partial class Mig1_Micro_Persona
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -58,6 +58,40 @@ namespace Microservicio_Persona.AccessData.Migrations
                     b.HasKey("EstudianteID");
 
                     b.ToTable("Estudiante");
+
+                    b.HasData(
+                        new
+                        {
+                            EstudianteID = 1,
+                            Apellido = "olivera",
+                            Email = "pepeolivera@hotmail.com>",
+                            Legajo = 1233,
+                            Nombre = "pepe"
+                        },
+                        new
+                        {
+                            EstudianteID = 2,
+                            Apellido = "gonzalez",
+                            Email = "pepag@hotmail.com>",
+                            Legajo = 1234,
+                            Nombre = "pepa"
+                        },
+                        new
+                        {
+                            EstudianteID = 3,
+                            Apellido = "perez",
+                            Email = "juanperez@hotmail.com>",
+                            Legajo = 1235,
+                            Nombre = "juan"
+                        },
+                        new
+                        {
+                            EstudianteID = 4,
+                            Apellido = "lopez",
+                            Email = "ariellopez@hotmail.com>",
+                            Legajo = 1236,
+                            Nombre = "ariel"
+                        });
                 });
 
             modelBuilder.Entity("Microservicio_Persona.Domain.Entities.Profesor", b =>
