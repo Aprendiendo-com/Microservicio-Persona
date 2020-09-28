@@ -7,9 +7,8 @@ namespace Microservicio_Persona.Domain.Query
 {
    public interface IEstudianteQuery
     {
-        List<ResponseGetAllEstudianteDTO> GetAllEstudiante(); 
-        ResponseGetEstudianteByIdDTO GetById(int EstudianteId);
-        ResponseGetEstudianteByLegajoDTO GetByLegajo(int Legajo);
+        List<EstudianteDTOs> GetAllEstudiantes(); 
+        EstudianteDTOs GetById(int EstudianteId);
 
     }
 }

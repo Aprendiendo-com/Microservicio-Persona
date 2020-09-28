@@ -9,10 +9,11 @@ namespace Microservicio_Persona.Aplication.Services
 {
    public interface IProfesorService
     {
-        
-       Profesor GetCursosByEspecialidad(string especialidad);
-       ResponseGetProfesorByIdDTO GetById(int ProfesorId);
-       List<ResponseGetAllProfesorDTO> GetAllProfesor();
+        Profesor CreateProfesor(ProfesorDTOs profesor);
+        ProfesorDTOs GetProfesorEspecialidad(string Especialidad);
+       List<ProfesorDTOs> GetProfesoresByEspecialidad(string especialidad);
+       ProfesorDTOs GetById(int ProfesorId);
+       List<ProfesorDTOs> GetAllProfesores();
         
     }
     public class ProfesorService : IProfesorService
@@ -24,22 +25,43 @@ namespace Microservicio_Persona.Aplication.Services
             _repository = repository;
             _query= query;
         }
-        public Profesor GetCursosByEspecialidad(string especialidad)
+
+        public Profesor CreateProfesor(ProfesorDTOs profesor)
         {
-            return _query.GetCursosByEspecialidad(especialidad);
-            //throw new NotImplementedException();
+            var entity = new Profesor
+            {
+                ProfesorId = profesor.ProfesorId,
+                Nombre = profesor.Nombre,
+                Apellido = profesor.Apellido,
+                Email = profesor.Email,
+                Especialidad = profesor.Especialidad
+            };
+            _repository.Add<Profesor>(entity);
+            Console.WriteLine("creando profesor");
+            return entity;
+        }
+        
+        
+        public ProfesorDTOs GetProfesorEspecialidad(string Especialidad)
+        {
+            return _query.GetProfesorEspecialidad(Especialidad);
+
+        } 
+        public List<ProfesorDTOs> GetProfesoresByEspecialidad(string especialidad)
+        {
+            return _query.GetProfesoresByEspecialidad(especialidad);
         }
 
-        public ResponseGetProfesorByIdDTO GetById(int ProfesorId)
+        public ProfesorDTOs GetById(int ProfesorId)
         {
 
             return _query.GetById(ProfesorId);
         }
 
-        public List<ResponseGetAllProfesorDTO> GetAllProfesor()
+        public List<ProfesorDTOs> GetAllProfesores()
         {
 
-           return  _query.GetAllProfesor();
+           return  _query.GetAllProfesores();
         }
     }
 }

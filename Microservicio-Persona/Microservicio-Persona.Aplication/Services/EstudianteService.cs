@@ -10,9 +10,8 @@ namespace Microservicio_Persona.Aplication.Services
     public interface IEstudianteService
     {
         Estudiante CreateEstudiante(EstudianteDTOs estudiante);
-        List<ResponseGetAllEstudianteDTO> GetAllEstudiante(); 
-        ResponseGetEstudianteByIdDTO GetById(int EstudianteId);
-        ResponseGetEstudianteByLegajoDTO GetByLegajo(int Legajo);
+        List<EstudianteDTOs> GetAllEstudiantes(); 
+        EstudianteDTOs GetById(int EstudianteId);
 
     }
     public class EstudianteService : IEstudianteService
@@ -40,22 +39,16 @@ namespace Microservicio_Persona.Aplication.Services
             return entity;
         }
 
-        public ResponseGetEstudianteByIdDTO GetById(int EstudianteID)
+        public EstudianteDTOs GetById(int EstudianteID)
         {
 
             return _query.GetById(EstudianteID);
         }
 
-        public ResponseGetEstudianteByLegajoDTO GetByLegajo(int Legajo)
+        public List<EstudianteDTOs> GetAllEstudiantes()
         {
 
-            return _query.GetByLegajo(Legajo);
-        }
-
-        public List<ResponseGetAllEstudianteDTO> GetAllEstudiante()
-        {
-
-           return  _query.GetAllEstudiante();
+           return  _query.GetAllEstudiantes();
         }
 
     }

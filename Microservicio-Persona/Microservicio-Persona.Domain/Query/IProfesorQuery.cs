@@ -8,10 +8,10 @@ namespace Microservicio_Persona.Domain.Query
 {
    public interface IProfesorQuery
     {
-        //List<ProfesorDTOs> GetAllProfesoresEspecialidad(string Especialidad );
-        Profesor GetCursosByEspecialidad(string especialidad);
-       ResponseGetProfesorByIdDTO GetById(int ProfesorId);
-       List<ResponseGetAllProfesorDTO> GetAllProfesor();
+        ProfesorDTOs GetProfesorEspecialidad(string Especialidad);
+        List<ProfesorDTOs> GetProfesoresByEspecialidad(string especialidad);
+       ProfesorDTOs GetById(int ProfesorId);
+       List<ProfesorDTOs> GetAllProfesores();
 
     }
 }

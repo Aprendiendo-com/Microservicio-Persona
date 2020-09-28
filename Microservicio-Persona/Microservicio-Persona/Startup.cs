@@ -9,7 +9,9 @@ using SqlKata.Compilers;
 using System.Data;
 using System.Data.SqlClient;
 using Microservicio_Persona.Domain.Command;
+using Microservicio_Persona.Domain.Query;
 using Microservicio_Persona.AccessData.Command;
+using Microservicio_Persona.AccessData.Queries;
 using Microservicio_Persona.Aplication.Services;
 using DocumentFormat.OpenXml.InkML;
 
@@ -45,6 +47,8 @@ namespace Microservicio_Persona
             services.AddTransient<IGenericsRepository, GenericsRepository>();
             services.AddTransient<IEstudianteService, EstudianteService>();
             services.AddTransient<IProfesorService, ProfesorService>();
+            services.AddTransient<IEstudianteQuery, EstudianteQuery>();
+            services.AddTransient<IProfesorQuery, ProfesorQuery>();
 
 
 

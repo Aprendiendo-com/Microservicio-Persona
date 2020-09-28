@@ -11,7 +11,7 @@ using System.Text;
 
 namespace Microservicio_Persona.AccessData.Queries
 {
-   public class ProfesorQuery //: IProfesorQuery
+   public class ProfesorQuery : IProfesorQuery
     {
 
         private readonly IDbConnection connection;
@@ -22,37 +22,68 @@ namespace Microservicio_Persona.AccessData.Queries
             this.connection = connection;
             this.sqlKataCompiler = sqlKataCompiler;
         }
-        //public List<ProfesorDTOs> GetAllProfesoresEspecialidad(string Especialidad)
-        //{
-        //}
+        public ProfesorDTOs GetProfesorEspecialidad(string Especialidad)
+        {
+            var db = new QueryFactory(connection, sqlKataCompiler);
+            
+            var profe = db.Query("Profesor")
+                                .Select("ProfesorId","Nombre", "Apellido","Email")
+                                .Where("Especialidad", "=", Especialidad)
+                                .FirstOrDefault<ProfesorDTOs>();
+            
+            return new ProfesorDTOs 
+            {
+                ProfesorId = profe.ProfesorId,
+                Nombre = profe.Nombre,
+                Apellido = profe.Apellido,
+                Email = profe.Email,
+                Especialidad = profe.Especialidad
+            };
+        }
 
-        //public ResponseGetCursoById GetById(string cursoId)
-        //{
-        //    var db = new QueryFactory(connection, sqlKataCompiler);
-        //    var curso = db.Query("Cursos")
-        //        .Select("CursoId", "Materia", "ProfesorId")
-        //        .Where("CursoId", "=", cursoId)
-        //        .FirstOrDefault<ResponseGetAllCursoDto>();
+        public List<ProfesorDTOs> GetProfesoresByEspecialidad(string especialidad)
+        {
+            var db = new QueryFactory(connection, sqlKataCompiler);
 
-        //    var profesor = db.Query("Profesores")
-        //        .Select("ProfesorId", "Nombre", "Apellido")
-        //        .Where("ProfesorId", "=", curso.ProfesorId)
-        //        .FirstOrDefault<ResponseGetCursoByIdProfesor>();
+            var query = db.Query("Profesores")
+                        .Select("ProfesorId","Nombre", "Apellido","Email","Especialidad")
+                        .Where("Especialidad", "=", especialidad);
 
-        //    var alumnos = db.Query("Alumnos")
-        //        .Select("AlumnoId", "Nombre", "Apellido", "Legajo")
-        //        .Where("CursoId", "=", cursoId)
-        //        .Get<ResponseGetCursoByIdAlumno>()
-        //        .ToList();
+            var result = query.Get<ProfesorDTOs>();
 
-        //    return new ResponseGetCursoById
-        //    {
-        //        CursoId = curso.CursoId,
-        //        Materia = curso.Materia,
-        //        Profesor = profesor,
-        //        Alumnos = alumnos
-        //    };
-        //}
+            return result.ToList();
+        }
+       public ProfesorDTOs GetById(int ProfesorId)
+       {
+           var db = new QueryFactory(connection, sqlKataCompiler);
+            
+            var profe = db.Query("Profesor")
+                                .Select("ProfesorId","Nombre", "Apellido","Email","Especialidad")
+                                .Where("ProfesorId", "=", ProfesorId)
+                                .FirstOrDefault<ProfesorDTOs>();
+            
+            return new ProfesorDTOs 
+            {
+                ProfesorId = profe.ProfesorId,
+                Nombre = profe.Nombre,
+                Apellido = profe.Apellido,
+                Email = profe.Email,
+                Especialidad = profe.Especialidad
+            };
+
+       }
+       public List<ProfesorDTOs> GetAllProfesores()
+       {
+           var db = new QueryFactory(connection, sqlKataCompiler);
+
+            var query = db.Query("Profesores");
+
+            var result = query.Get<ProfesorDTOs>();
+
+            return result.ToList();
+
+       }
+
     }
 
 

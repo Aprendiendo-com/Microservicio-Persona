@@ -30,6 +30,35 @@ namespace Microservicio_Persona.Controllers
             }
         }
 
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            try
+            {
+                return new JsonResult(_service.GetAllEstudiantes()) { StatusCode = 200 };
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [Route ("FindByID")]
+        [HttpGet("{Id?}")]
+        public IActionResult FindBy(int estudianteId)
+        {
+            try
+            {
+                return new JsonResult(_service.GetById(estudianteId)) { StatusCode = 200 };
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+
         //[Route("Dar de baja a un estudiante")]
         //[HttpGet]
 
