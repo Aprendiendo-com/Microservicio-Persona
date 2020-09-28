@@ -28,7 +28,7 @@ namespace Microservicio_Persona.Controllers
         {
             try
             {
-                return new JsonResult(_service.GetCursoEspecialidad(especialidad)) { StatusCode = 200 };
+                return new JsonResult(_service.GetCursosByEspecialidad(especialidad)) { StatusCode = 200 };
             }
             catch (Exception e)
             {

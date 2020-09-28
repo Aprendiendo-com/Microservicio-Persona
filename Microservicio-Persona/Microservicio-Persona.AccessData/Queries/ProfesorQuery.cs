@@ -11,7 +11,7 @@ using System.Text;
 
 namespace Microservicio_Persona.AccessData.Queries
 {
-   public class ProfesorQuery : IProfesorQuery
+   public class ProfesorQuery //: IProfesorQuery
     {
 
         private readonly IDbConnection connection;
