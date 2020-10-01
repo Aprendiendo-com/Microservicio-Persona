@@ -42,7 +42,7 @@ namespace Microservicio_Persona.Controllers
         {
             try
             {
-                return new JsonResult(_service.GetProfesorEspecialidad(especialidad)) { StatusCode = 200 };
+                return new JsonResult(_service.GetProfesoresByEspecialidad(especialidad)) { StatusCode = 200 };
             }
             catch (Exception e)
             {
@@ -51,12 +51,7 @@ namespace Microservicio_Persona.Controllers
         }
         
 
-        // GET api/<ProfesorController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+      
 
 
         [Route("obtenerListadoProfesores")]
@@ -75,15 +70,15 @@ namespace Microservicio_Persona.Controllers
 
 
         // PUT api/<ProfesorController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody] string value)
+        //{
+        //}
 
         // DELETE api/<ProfesorController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
     }
 }

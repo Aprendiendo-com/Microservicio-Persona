@@ -22,24 +22,28 @@ namespace Microservicio_Persona.AccessData.Queries
             this.connection = connection;
             this.sqlKataCompiler = sqlKataCompiler;
         }
-        public ProfesorDTOs GetProfesorEspecialidad(string Especialidad)
-        {
-            var db = new QueryFactory(connection, sqlKataCompiler);
+        //public ProfesorDTOs GetProfesorEspecialidad(string Especialidad)
+        //{
+        //    var db = new QueryFactory(connection, sqlKataCompiler);
             
-            var profe = db.Query("Profesor")
-                                .Select("ProfesorId","Nombre", "Apellido","Email")
-                                .Where("Especialidad", "=", Especialidad)
-                                .FirstOrDefault<ProfesorDTOs>();
-            
-            return new ProfesorDTOs 
-            {
-                ProfesorId = profe.ProfesorId,
-                Nombre = profe.Nombre,
-                Apellido = profe.Apellido,
-                Email = profe.Email,
-                Especialidad = profe.Especialidad
-            };
-        }
+        //    var especialidad = db.Query("Profesor")
+        //                        .Select("ProfesorId","Nombre", "Apellido","Email")
+        //                        .Where("Especialidad", "=", Especialidad)
+        //                        .FirstOrDefault<ProfesorDTOs>();
+        //    ProfesorDTOs profesor = especialidad;
+
+        //    var result = especialidad.Get<ProfesorDTOs>();
+        //    result.ToList();
+        //    return profesor;
+        //    //return new ProfesorDTOs 
+        //    //{
+        //    //    ProfesorId = profe.ProfesorId,
+        //    //    Nombre = profe.Nombre,
+        //    //    Apellido = profe.Apellido,
+        //    //    Email = profe.Email,
+        //    //    Especialidad = profe.Especialidad
+        //    //};
+        //}
 
         public List<ProfesorDTOs> GetProfesoresByEspecialidad(string especialidad)
         {

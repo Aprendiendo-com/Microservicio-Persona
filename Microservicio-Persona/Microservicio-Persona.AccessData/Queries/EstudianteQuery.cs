@@ -34,12 +34,12 @@ namespace Microservicio_Persona.AccessData.Queries
 
             return result.ToList();
 
-        } 
+        }
         public EstudianteDTOs GetById(int EstudianteId)
         {
             var db = new QueryFactory(connection, sqlKataCompiler);
             var estudiante = db.Query("Estudiante")
-                .Select("EstudianteID", "Nombre", "Apellido","Email","Legajo")
+                .Select("EstudianteID", "Nombre", "Apellido", "Email", "Legajo")
                 .Where("EstudianteID", "=", EstudianteId)
                 .FirstOrDefault<EstudianteDTOs>();
 

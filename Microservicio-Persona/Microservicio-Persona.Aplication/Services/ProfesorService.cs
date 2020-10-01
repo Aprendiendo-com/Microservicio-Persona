@@ -10,7 +10,7 @@ namespace Microservicio_Persona.Aplication.Services
    public interface IProfesorService
     {
         Profesor CreateProfesor(ProfesorDTOs profesor);
-        ProfesorDTOs GetProfesorEspecialidad(string Especialidad);
+        //ProfesorDTOs GetProfesorEspecialidad(string Especialidad);
        List<ProfesorDTOs> GetProfesoresByEspecialidad(string especialidad);
        ProfesorDTOs GetById(int ProfesorId);
        List<ProfesorDTOs> GetAllProfesores();
@@ -26,7 +26,7 @@ namespace Microservicio_Persona.Aplication.Services
             _query= query;
         }
 
-        public Profesor CreateProfesor(ProfesorDTOs profesor)
+        public Profesor CreateProfesor(ProfesorDTOs profesor) 
         {
             var entity = new Profesor
             {
@@ -42,11 +42,11 @@ namespace Microservicio_Persona.Aplication.Services
         }
         
         
-        public ProfesorDTOs GetProfesorEspecialidad(string Especialidad)
-        {
-            return _query.GetProfesorEspecialidad(Especialidad);
+        //public ProfesorDTOs GetProfesorEspecialidad(string Especialidad)
+        //{
+        //    return _query.GetProfesorEspecialidad(Especialidad);
 
-        } 
+        //} 
         public List<ProfesorDTOs> GetProfesoresByEspecialidad(string especialidad)
         {
             return _query.GetProfesoresByEspecialidad(especialidad);

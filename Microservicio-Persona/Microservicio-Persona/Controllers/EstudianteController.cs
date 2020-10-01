@@ -43,8 +43,8 @@ namespace Microservicio_Persona.Controllers
             }
         }
 
-        [Route ("FindByID")]
-        [HttpGet("{Id?}")]
+        [Route("FindByID")]
+        [HttpGet]
         public IActionResult FindBy(int estudianteId)
         {
             try
