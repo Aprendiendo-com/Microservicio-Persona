@@ -8,5 +8,7 @@ namespace Microservicio_Persona.Domain.Entities
     {
        public int EspecialidadId { get; set; }
        public string Descripcion { get; set; }
+
+       public ICollection<Profesor> Profesor { get; set; }
     }
 }

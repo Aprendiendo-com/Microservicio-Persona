@@ -12,7 +12,7 @@ namespace Microservicio_Persona.Domain.Entities
 
         public string Email { get; set; }
 
-        public string Especialidad{ get; set; }
+        public int EspecialidadId { get; set; }
         public virtual Especialidad EspecialidadNavegator { get; set; }   //FK
 
     }
