@@ -49,12 +49,12 @@ namespace Microservicio_Persona.Controllers
             }
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetById(int Id)
+        [HttpGet("{id?}")]
+        public IActionResult GetById(int id)
         {
             try
             {
-                return new JsonResult(_service.GetById(Id)) { StatusCode = 200 };
+                return new JsonResult(_service.GetById(id)) { StatusCode = 200 };
             }
             catch (Exception e)
             {
@@ -70,6 +70,20 @@ namespace Microservicio_Persona.Controllers
             try
             {
                 return new JsonResult(_service.GetProfesoresByEspecialidad(especialidad)) { StatusCode = 200 };
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [Route ("TraerRegistro")]
+        [HttpGet]
+        public IActionResult GetRegistro()
+        {
+            try
+            {
+                return new JsonResult(_service.GetRegistros()) { StatusCode = 200 };
             }
             catch (Exception e)
             {

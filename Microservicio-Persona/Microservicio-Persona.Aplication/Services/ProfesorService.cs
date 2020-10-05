@@ -4,6 +4,10 @@ using Microservicio_Persona.Domain.Command;
 using Microservicio_Persona.Domain.DTOs;
 using Microservicio_Persona.Domain.Query;
 using Microservicio_Persona.Domain.Entities;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Microservicio_Persona.Aplication.Services
 {
@@ -13,6 +17,7 @@ namespace Microservicio_Persona.Aplication.Services
        List<ProfesorDTOs> GetProfesoresByEspecialidad(string especialidad);
        ProfesorDTOs GetById(int ProfesorId);
        List<ProfesorDTOs> GetAllProfesores();
+       Task<List<RegistroDTOs>> GetRegistros();
         
     }
     public class ProfesorService : IProfesorService
@@ -55,6 +60,28 @@ namespace Microservicio_Persona.Aplication.Services
         {
 
            return  _query.GetAllProfesores();
+        }
+
+        public async Task<List<RegistroDTOs>> GetRegistros()
+        {
+            //string url = "https://localhost:44326/api/Registro";
+            
+            
+            using (var http = new HttpClient())
+            {
+                    var uri = new Uri("https://localhost:44326/api/Registro");
+                    string request = await http.GetStringAsync(uri);
+
+                    //response.EnsureSuccessStatusCode();
+                    //string responseBody = await response.Content.ReadAsStringAsync();
+
+                    //var _stringSerialized = await request.Content.ReadAsStringAsync().ConfigureAwait(false);
+                    //var registrosObtenidos = JsonConvert.DeserializeObject<List<RegistroDTOs>>(_stringSerialized);
+
+                    List<RegistroDTOs> registros = JsonConvert.DeserializeObject<List<RegistroDTOs>>(request);
+
+                    return  registros;
+            }  
         }
     }
 }

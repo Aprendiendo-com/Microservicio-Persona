@@ -44,6 +44,12 @@ namespace Microservicio_Persona
                 return new SqlConnection(connectionString);
             });
 
+            //Configuracion de CORS
+            services.AddControllersWithViews()
+                    .AddNewtonsoftJson(options =>
+                    options.SerializerSettings.ReferenceLoopHandling =
+                    Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                    );
 
             services.AddTransient<IGenericsRepository, GenericsRepository>();
             services.AddTransient<IEstudianteService, EstudianteService>();

@@ -19,6 +19,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.8" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="SqlKata" Version="2.2.0" />
     <PackageReference Include="SqlKata.Execution" Version="2.2.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="5.6.1" />
