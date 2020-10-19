@@ -11,6 +11,7 @@ namespace Microservicio_Persona.Domain.Entities
         public string Apellido { get; set; }
         public string Email { get; set; }
         public int Legajo { get; set; }
+        public ICollection<EstudianteCurso> EstudianteCursoNavegacion { get; set; }
 
        
     }

@@ -9,6 +9,5 @@ namespace Microservicio_Persona.Domain.DTOs
         public int EspecialidadId { get; set; }
         public string Descripcion { get; set; }
         
-       public ICollection<ProfesorDTOs> ProfesorDTOs { get; set; }
     }
 }

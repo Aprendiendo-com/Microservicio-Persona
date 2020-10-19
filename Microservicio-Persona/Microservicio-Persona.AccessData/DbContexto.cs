@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Microservicio_Persona.Domain.DTOs;
 using Microservicio_Persona.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,6 +12,8 @@ namespace Microservicio_Persona.AccessData
         public DbSet<Estudiante> Estudiante { get; set; }
         public DbSet<Profesor> Profesor { get; set; }
         public DbSet<Especialidad> Especialidad { get; set; }
+
+        public DbSet<EstudianteCurso> EstudianteCurso { get; set; }
 
         public DbContexto() { }
 
@@ -28,6 +31,16 @@ namespace Microservicio_Persona.AccessData
                         .HasOne<Especialidad>(e => e.EspecialidadNavegator)
                         .WithMany(e => e.Profesor)
                         .HasForeignKey(k => k.EspecialidadId);
+
+            modelBuilder.Entity<EstudianteCurso>()
+                        .HasOne<Estudiante>(e => e.EstudianteNavegador)
+                        .WithMany(e => e.EstudianteCursoNavegacion)
+                        .HasForeignKey(k => k.EstudianteID);
+
+            modelBuilder.Entity<EstudianteCurso>()
+                        .HasOne<CursoDTO>(e => e.CursoDTONavegador)  
+                        .WithMany(e => e.EstudianteCursoNavegacion)
+                        .HasForeignKey(k => k.CursoID);
             
             modelBuilder.Entity<Especialidad>().Property(d => d.Descripcion).IsRequired();
             modelBuilder.Entity<Profesor>().Property(p => p.Nombre).IsRequired();
@@ -65,6 +78,16 @@ namespace Microservicio_Persona.AccessData
                 entity.HasData(new Estudiante { EstudianteID = 2, Nombre = "pepa", Apellido = "gonzalez", Email = "pepag@hotmail.com>", Legajo = 1234 });
                 entity.HasData(new Estudiante { EstudianteID = 3, Nombre = "juan", Apellido = "perez", Email = "juanperez@hotmail.com>", Legajo = 1235 });
                 entity.HasData(new Estudiante { EstudianteID = 4, Nombre = "ariel", Apellido = "lopez", Email = "ariellopez@hotmail.com>", Legajo = 1236 });
+            });
+
+            modelBuilder.Entity<EstudianteCurso>(entity =>
+            {
+                entity.ToTable("EstudianteCurso");
+                entity.HasData(new EstudianteCurso { EstudianteCursoID = 101, CursoID = 1, EstudianteID = 1, Estado = "aprobado"});
+                entity.HasData(new EstudianteCurso { EstudianteCursoID = 102, CursoID = 1, EstudianteID = 2, Estado = "aprobado"});
+                entity.HasData(new EstudianteCurso { EstudianteCursoID = 103, CursoID = 2, EstudianteID = 3, Estado = "aprobado"});
+                entity.HasData(new EstudianteCurso { EstudianteCursoID = 104, CursoID = 2, EstudianteID = 4, Estado = "desaprobado"});
+                entity.HasData(new EstudianteCurso { EstudianteCursoID = 105, CursoID = 2, EstudianteID = 1, Estado = "desaprobado"});
             });
 
         }

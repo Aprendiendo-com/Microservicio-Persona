@@ -64,13 +64,12 @@ namespace Microservicio_Persona.Aplication.Services
 
         public async Task<List<RegistroDTOs>> GetRegistros()
         {
-            //string url = "https://localhost:44326/api/Registro";
+            string url = "https://localhost:44326/api/Registro";
             
             
             using (var http = new HttpClient())
             {
-                    var uri = new Uri("https://localhost:44326/api/Registro");
-                    string request = await http.GetStringAsync(uri);
+                    string request = await http.GetStringAsync(url);
 
                     //response.EnsureSuccessStatusCode();
                     //string responseBody = await response.Content.ReadAsStringAsync();

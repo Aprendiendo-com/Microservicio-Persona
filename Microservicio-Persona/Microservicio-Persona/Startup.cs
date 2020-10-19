@@ -36,7 +36,7 @@ namespace Microservicio_Persona
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen();
             var connectionString = Configuration.GetSection("ConnectionString").Value; //busca las configuraciones del sistema
-            services.AddDbContext<DbContexto>(options => options.UseSqlServer(connectionString,b => b.MigrationsAssembly("Microservicio-Persona"))); //solo para julia q usa vscode despues borrar eso de migrationAssembly
+            services.AddDbContext<DbContexto>(options => options.UseSqlServer(connectionString)); 
             // SQLKATA
             services.AddTransient<Compiler, SqlServerCompiler>();
             services.AddTransient<IDbConnection>(b =>
@@ -51,13 +51,15 @@ namespace Microservicio_Persona
                     Newtonsoft.Json.ReferenceLoopHandling.Ignore
                     );
 
-            services.AddTransient<IGenericsRepository, GenericsRepository>();
-            services.AddTransient<IEstudianteService, EstudianteService>();
-            services.AddTransient<IProfesorService, ProfesorService>();
-            services.AddTransient<IEstudianteQuery, EstudianteQuery>();
-            services.AddTransient<IProfesorQuery, ProfesorQuery>();
 
-
+            services.AddScoped<IGenericsRepository, GenericsRepository>();
+            services.AddScoped<IEstudianteService, EstudianteService>();
+            services.AddScoped<IProfesorService, ProfesorService>();
+            services.AddScoped<IEstudianteCursoService, EstudianteCursoService>();
+            services.AddScoped<IEstudianteQuery, EstudianteQuery>();
+            services.AddScoped<IProfesorQuery, ProfesorQuery>();
+            services.AddScoped<IProfesorQuery, ProfesorQuery>();
+            services.AddScoped<IEstudianteCursoQuery, EstudianteCursoQuery>();            
 
 
         }
