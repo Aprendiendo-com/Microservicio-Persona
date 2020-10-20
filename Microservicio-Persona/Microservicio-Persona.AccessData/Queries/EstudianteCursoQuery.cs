@@ -32,14 +32,23 @@ namespace Microservicio_Persona.AccessData.Queries
             return result.ToList();
 
        }
-       public List<EstudianteCursoDTO> GetEstudiantesByCurso(int cursoId)
+       public List<ResponseGetEstudiantesByCurso> GetEstudiantesByCurso(int cursoId)
        {
            var db = new QueryFactory(connection, sqlKataCompiler);
 
             var query = db.Query("EstudianteCurso")
+                            .Select("EstudianteCurso.EstudianteCursoID",
+                            "EstudianteCurso.CursoID",
+                            "EstudianteCurso.EstudianteID",
+                            "Estudiante.Nombre",
+                            "Estudiante.Apellido",
+                            "Estudiante.Email",
+                            "Estudiante.Legajo",
+                            "EstudianteCurso.Estado")
+                            .Join("Estudiante", "EstudianteCurso.EstudianteID", "Estudiante.EstudianteID")
                             .Where("CursoID", "=", cursoId);
 
-            var result = query.Get<EstudianteCursoDTO>();
+            var result = query.Get<ResponseGetEstudiantesByCurso>();
 
             return result.ToList();
 

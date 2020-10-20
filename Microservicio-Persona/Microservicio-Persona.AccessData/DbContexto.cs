@@ -36,11 +36,6 @@ namespace Microservicio_Persona.AccessData
                         .HasOne<Estudiante>(e => e.EstudianteNavegador)
                         .WithMany(e => e.EstudianteCursoNavegacion)
                         .HasForeignKey(k => k.EstudianteID);
-
-            modelBuilder.Entity<EstudianteCurso>()
-                        .HasOne<CursoDTO>(e => e.CursoDTONavegador)  
-                        .WithMany(e => e.EstudianteCursoNavegacion)
-                        .HasForeignKey(k => k.CursoID);
             
             modelBuilder.Entity<Especialidad>().Property(d => d.Descripcion).IsRequired();
             modelBuilder.Entity<Profesor>().Property(p => p.Nombre).IsRequired();
@@ -88,6 +83,8 @@ namespace Microservicio_Persona.AccessData
                 entity.HasData(new EstudianteCurso { EstudianteCursoID = 103, CursoID = 2, EstudianteID = 3, Estado = "aprobado"});
                 entity.HasData(new EstudianteCurso { EstudianteCursoID = 104, CursoID = 2, EstudianteID = 4, Estado = "desaprobado"});
                 entity.HasData(new EstudianteCurso { EstudianteCursoID = 105, CursoID = 2, EstudianteID = 1, Estado = "desaprobado"});
+                entity.HasData(new EstudianteCurso { EstudianteCursoID = 106, CursoID = 3, EstudianteID = 2, Estado = "desaprobado"});
+                entity.HasData(new EstudianteCurso { EstudianteCursoID = 107, CursoID = 3, EstudianteID = 3, Estado = "desaprobado"});
             });
 
         }

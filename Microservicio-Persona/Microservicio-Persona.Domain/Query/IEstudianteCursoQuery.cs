@@ -8,7 +8,7 @@ namespace Microservicio_Persona.Domain.Query
     {
 
        List<EstudianteCursoDTO> GetCursosByEstudiante(int estudianteId);
-       List<EstudianteCursoDTO> GetEstudiantesByCurso(int cursoId);
+       List<ResponseGetEstudiantesByCurso> GetEstudiantesByCurso(int cursoId);
 
     }
 }

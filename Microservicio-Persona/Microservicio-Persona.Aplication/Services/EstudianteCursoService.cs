@@ -14,7 +14,7 @@ namespace Microservicio_Persona.Aplication.Services
    public interface IEstudianteCursoService
     {
         EstudianteCurso CreateRelacion(EstudianteCursoDTO profesor);
-        List<EstudianteCursoDTO> GetEstudiantesByCurso(int cursoId);
+        List<ResponseGetEstudiantesByCurso> GetEstudiantesByCurso(int cursoId);
         List<EstudianteCursoDTO> GetCursosByEstudiante(int estudianteId);
         Task<List<EstudianteDTOs>> GetListado();
         
@@ -43,7 +43,7 @@ namespace Microservicio_Persona.Aplication.Services
             return entity;
         }
 
-        public List<EstudianteCursoDTO> GetEstudiantesByCurso(int cursoId)
+        public List<ResponseGetEstudiantesByCurso> GetEstudiantesByCurso(int cursoId)
         {
 
            return  _query.GetEstudiantesByCurso(cursoId);

@@ -11,6 +11,5 @@ namespace Microservicio_Persona.Domain.Entities
         public string Estado { get; set; }
 
         public Estudiante EstudianteNavegador { get; set; }
-        public CursoDTO CursoDTONavegador { get; set; }
     }
 }

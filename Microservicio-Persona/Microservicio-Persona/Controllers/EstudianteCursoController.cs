@@ -32,7 +32,7 @@ namespace Microservicio_Persona.Controllers
             }
         }
 
-        [Route ("{cursoId?}")]
+        [Route ("estudiante/{cursoId?}")]
         [HttpGet]
         public IActionResult GetEstudiantesByCurso(int cursoId)
         {
@@ -46,7 +46,7 @@ namespace Microservicio_Persona.Controllers
             }
         }
 
-        [Route ("{estudianteId?}")]
+        [Route ("cursos/{estudianteId?}")]
         [HttpGet]
         public IActionResult GetCursosByEstudiante(int estudianteId)
         {
