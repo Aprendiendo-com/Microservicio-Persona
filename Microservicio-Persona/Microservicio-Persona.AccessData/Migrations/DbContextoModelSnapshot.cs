@@ -67,6 +67,9 @@ namespace Microservicio_Persona.AccessData.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("DNI")
+                        .HasColumnType("int");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -87,6 +90,7 @@ namespace Microservicio_Persona.AccessData.Migrations
                         {
                             EstudianteID = 1,
                             Apellido = "oliver",
+                            DNI = 0,
                             Email = "pepeolivera@hotmail.com>",
                             Legajo = 1233,
                             Nombre = "pepe"
@@ -95,6 +99,7 @@ namespace Microservicio_Persona.AccessData.Migrations
                         {
                             EstudianteID = 2,
                             Apellido = "gonzalez",
+                            DNI = 0,
                             Email = "pepag@hotmail.com>",
                             Legajo = 1234,
                             Nombre = "pepa"
@@ -103,6 +108,7 @@ namespace Microservicio_Persona.AccessData.Migrations
                         {
                             EstudianteID = 3,
                             Apellido = "perez",
+                            DNI = 0,
                             Email = "juanperez@hotmail.com>",
                             Legajo = 1235,
                             Nombre = "juan"
@@ -111,6 +117,7 @@ namespace Microservicio_Persona.AccessData.Migrations
                         {
                             EstudianteID = 4,
                             Apellido = "lopez",
+                            DNI = 0,
                             Email = "ariellopez@hotmail.com>",
                             Legajo = 1236,
                             Nombre = "ariel"

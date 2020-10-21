@@ -53,9 +53,19 @@ namespace Microservicio_Persona.AccessData.Queries
             return result.ToList();
 
        }
+        public int BajaCursoEstudiante(int estudianteId, int cursoId)
+       {
+            var db = new QueryFactory(connection, sqlKataCompiler);
 
-    }
+            var query = db.Query("EstudianteCurso").Where(new
+            {
+                EstudianteID = estudianteId,
+                CursoID = cursoId,
+            }).Delete();
+            
+            return query;
+        }
 
 
-
-    }
+    }       
+}

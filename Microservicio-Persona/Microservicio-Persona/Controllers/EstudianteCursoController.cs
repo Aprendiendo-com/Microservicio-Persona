@@ -59,6 +59,25 @@ namespace Microservicio_Persona.Controllers
                 return BadRequest(e.Message);
             }
         }
-        
+        [HttpDelete]
+        public IActionResult BajaCursoEstudiante([FromQuery]int estudianteId, [FromQuery] int cursoId)
+        {
+            try
+            {
+                var resul = _service.BajaCursoEstudiante(estudianteId, cursoId);
+                if (resul == 0)
+                {
+                    return NotFound("No se encontro el registro pedido a eliminar.");
+                }
+                
+                return new JsonResult ("Se dio de baja al alumno del curso "+ cursoId){ StatusCode = 200 };
+
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
     }
 }

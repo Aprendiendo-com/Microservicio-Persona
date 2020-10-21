@@ -17,7 +17,9 @@ namespace Microservicio_Persona.Aplication.Services
         List<ResponseGetEstudiantesByCurso> GetEstudiantesByCurso(int cursoId);
         List<EstudianteCursoDTO> GetCursosByEstudiante(int estudianteId);
         Task<List<EstudianteDTOs>> GetListado();
-        
+        int BajaCursoEstudiante(int estudianteId, int cursoId);
+
+
     }
     public class EstudianteCursoService : IEstudianteCursoService
     {
@@ -68,6 +70,9 @@ namespace Microservicio_Persona.Aplication.Services
 
                     return  registros;
             }  
+        }
+        public int BajaCursoEstudiante(int estudianteId, int cursoId) {         
+            return _query.BajaCursoEstudiante(estudianteId,cursoId);
         }
     }
 }
