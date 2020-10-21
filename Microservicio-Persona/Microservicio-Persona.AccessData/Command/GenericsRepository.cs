@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Microservicio_Persona.AccessData.Context;
-using Microservicio_Persona.Domain.Command.BaseRepository;
+using Microservicio_Persona.Domain.Command;
 using Microsoft.EntityFrameworkCore;
 
 namespace Microservicio_Persona.AccessData.Command
 {
-    class GenericRepository : IRepository
+   public class GenericsRepository : IGenericsRepository
     {
         protected DbContexto Context;
-        public GenericRepository(DbContexto contexto)
+        public GenericsRepository(DbContexto contexto)
         {
             this.Context = contexto;
         }

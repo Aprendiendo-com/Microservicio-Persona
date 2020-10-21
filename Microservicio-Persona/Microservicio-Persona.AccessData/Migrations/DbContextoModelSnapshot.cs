@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Microservicio_Persona.Migrations
+namespace Microservicio_Persona.AccessData.Migrations
 {
     [DbContext(typeof(DbContexto))]
     partial class DbContextoModelSnapshot : ModelSnapshot
@@ -117,6 +117,80 @@ namespace Microservicio_Persona.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Microservicio_Persona.Domain.Entities.EstudianteCurso", b =>
+                {
+                    b.Property<int>("EstudianteCursoID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CursoID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Estado")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EstudianteID")
+                        .HasColumnType("int");
+
+                    b.HasKey("EstudianteCursoID");
+
+                    b.HasIndex("EstudianteID");
+
+                    b.ToTable("EstudianteCurso");
+
+                    b.HasData(
+                        new
+                        {
+                            EstudianteCursoID = 101,
+                            CursoID = 1,
+                            Estado = "aprobado",
+                            EstudianteID = 1
+                        },
+                        new
+                        {
+                            EstudianteCursoID = 102,
+                            CursoID = 1,
+                            Estado = "aprobado",
+                            EstudianteID = 2
+                        },
+                        new
+                        {
+                            EstudianteCursoID = 103,
+                            CursoID = 2,
+                            Estado = "aprobado",
+                            EstudianteID = 3
+                        },
+                        new
+                        {
+                            EstudianteCursoID = 104,
+                            CursoID = 2,
+                            Estado = "desaprobado",
+                            EstudianteID = 4
+                        },
+                        new
+                        {
+                            EstudianteCursoID = 105,
+                            CursoID = 2,
+                            Estado = "desaprobado",
+                            EstudianteID = 1
+                        },
+                        new
+                        {
+                            EstudianteCursoID = 106,
+                            CursoID = 3,
+                            Estado = "desaprobado",
+                            EstudianteID = 2
+                        },
+                        new
+                        {
+                            EstudianteCursoID = 107,
+                            CursoID = 3,
+                            Estado = "desaprobado",
+                            EstudianteID = 3
+                        });
+                });
+
             modelBuilder.Entity("Microservicio_Persona.Domain.Entities.Profesor", b =>
                 {
                     b.Property<int>("ProfesorId")
@@ -178,6 +252,15 @@ namespace Microservicio_Persona.Migrations
                             EspecialidadId = 1,
                             Nombre = "leonardo"
                         });
+                });
+
+            modelBuilder.Entity("Microservicio_Persona.Domain.Entities.EstudianteCurso", b =>
+                {
+                    b.HasOne("Microservicio_Persona.Domain.Entities.Estudiante", "EstudianteNavegador")
+                        .WithMany("EstudianteCursoNavegacion")
+                        .HasForeignKey("EstudianteID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microservicio_Persona.Domain.Entities.Profesor", b =>

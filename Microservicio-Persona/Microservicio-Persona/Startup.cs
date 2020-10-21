@@ -1,17 +1,20 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microservicio_Persona.AccessData.Context;
+using Microservicio_Persona.AccessData;
+using SqlKata.Compilers;
+using System.Data;
+using System.Data.SqlClient;
+using Microservicio_Persona.Domain.Command;
+using Microservicio_Persona.Domain.Query;
+using Microservicio_Persona.AccessData.Command;
+using Microservicio_Persona.AccessData.Queries;
+using Microservicio_Persona.Aplication.Services;
+using DocumentFormat.OpenXml.InkML;
+using Microsoft.OpenApi.Models;
 
 namespace Microservicio_Persona
 {
@@ -28,8 +31,36 @@ namespace Microservicio_Persona
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+
+            // Register the Swagger generator, defining 1 or more Swagger documents
+            services.AddSwaggerGen();
             var connectionString = Configuration.GetSection("ConnectionString").Value; //busca las configuraciones del sistema
-            services.AddDbContext<DbContexto>(options => options.UseSqlServer(connectionString,x => x.MigrationsAssembly("Microservicio-Persona")));
+            services.AddDbContext<DbContexto>(options => options.UseSqlServer(connectionString)); 
+            // SQLKATA
+            services.AddTransient<Compiler, SqlServerCompiler>();
+            services.AddTransient<IDbConnection>(b =>
+            {
+                return new SqlConnection(connectionString);
+            });
+
+            //Configuracion de CORS
+            services.AddControllersWithViews()
+                    .AddNewtonsoftJson(options =>
+                    options.SerializerSettings.ReferenceLoopHandling =
+                    Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                    );
+
+
+            services.AddScoped<IGenericsRepository, GenericsRepository>();
+            services.AddScoped<IEstudianteService, EstudianteService>();
+            services.AddScoped<IProfesorService, ProfesorService>();
+            services.AddScoped<IEstudianteCursoService, EstudianteCursoService>();
+            services.AddScoped<IEstudianteQuery, EstudianteQuery>();
+            services.AddScoped<IProfesorQuery, ProfesorQuery>();
+            services.AddScoped<IProfesorQuery, ProfesorQuery>();
+            services.AddScoped<IEstudianteCursoQuery, EstudianteCursoQuery>();            
+
 
         }
 
@@ -40,13 +71,23 @@ namespace Microservicio_Persona
             {
                 app.UseDeveloperExceptionPage();
             }
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
 
-            app.UseHttpsRedirection();
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.RoutePrefix = string.Empty;
+
+            });
+            
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
-
             app.UseAuthorization();
-
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
