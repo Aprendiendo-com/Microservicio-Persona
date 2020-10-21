@@ -43,13 +43,13 @@ namespace Microservicio_Persona.Controllers
             }
         }
 
-        [Route("FindByID")]
-        [HttpGet]
-        public IActionResult FindBy(int estudianteId)
+
+        [HttpGet("{id}")]
+        public IActionResult FindBy(int id)
         {
             try
             {
-                return new JsonResult(_service.GetById(estudianteId)) { StatusCode = 200 };
+                return new JsonResult(_service.GetById(id)) { StatusCode = 200 };
             }
             catch (Exception ex)
             {

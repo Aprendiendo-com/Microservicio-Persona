@@ -13,7 +13,6 @@ namespace Microservicio_Persona.Domain.DTOs
 
         public string Email { get; set; }
 
-        public string Especialidad { get; set; }
-        public virtual Especialidad EspecialidadNavegator { get; set; }   //foreingh key
+        public int EspecialidadId { get; set; }
     }
 }

@@ -3,6 +3,12 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+Microservicio-Persona/Microservicio-Persona/appsettings.json
+Microservicio-Persona/Microservicio-Persona/appsettings.Development.json
+Microservicio-Persona/Microservicio-Persona/Startup.cs
+Microservicio-Persona/.vscode
+
+
 # User-specific files
 *.rsuser
 *.suo
