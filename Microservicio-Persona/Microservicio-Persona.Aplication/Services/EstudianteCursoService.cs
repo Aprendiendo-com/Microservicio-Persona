@@ -61,7 +61,7 @@ namespace Microservicio_Persona.Aplication.Services
 
         public async Task<List<EstudianteDTOs>> GetListado()
         {
-            string url = "https://localhost:44326/api/Registro";
+            string url = "https://localhost:51913/api/Registro";
             
             
             using (var http = new HttpClient())
@@ -80,7 +80,7 @@ namespace Microservicio_Persona.Aplication.Services
 
         public async Task<List<CursoCompletoDTO>> GetDetalleCursos(List<int> idCursos)
         {
-            string url = "https://localhost:44326/api/Curso/GetCursosByLista";
+            string url = "https://localhost:44308/api/Curso/GetCursosByLista";
             
             
             using (var http = new HttpClient())
