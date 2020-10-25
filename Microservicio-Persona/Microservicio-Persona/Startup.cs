@@ -83,7 +83,7 @@ namespace Microservicio_Persona
 
             });
             
-            //app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
 
             app.UseRouting();
             app.UseAuthorization();

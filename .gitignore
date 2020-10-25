@@ -344,3 +344,5 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+Microservicio-Persona/Microservicio-Persona/appsettings.Development.json
+Microservicio-Persona/Microservicio-Persona/appsettings.json
