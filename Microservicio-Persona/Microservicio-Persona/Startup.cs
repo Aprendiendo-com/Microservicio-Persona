@@ -51,6 +51,12 @@ namespace Microservicio_Persona
                     Newtonsoft.Json.ReferenceLoopHandling.Ignore
                     );
 
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            });
+            //services.AddJWTAuthentication(Configuration);
+
 
             services.AddScoped<IGenericsRepository, GenericsRepository>();
             services.AddScoped<IEstudianteService, EstudianteService>();
@@ -83,9 +89,10 @@ namespace Microservicio_Persona
 
             });
             
-            //app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseAuthorization();
             
             app.UseEndpoints(endpoints =>

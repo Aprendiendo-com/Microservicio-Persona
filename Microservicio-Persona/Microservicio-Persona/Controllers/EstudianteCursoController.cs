@@ -1,7 +1,10 @@
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microservicio_Persona.Aplication.Services;
 using Microservicio_Persona.Domain.DTOs;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -46,6 +49,8 @@ namespace Microservicio_Persona.Controllers
             }
         }
 
+
+        
         [Route ("cursos/{estudianteId?}")]
         [HttpGet]
         public IActionResult GetCursosByEstudiante(int estudianteId)
@@ -76,6 +81,26 @@ namespace Microservicio_Persona.Controllers
             catch (Exception e)
             {
                 return BadRequest(e.Message);
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetDetalleCursos([FromQuery] String listadosJson)
+        {
+            List<EstudianteCursoDTO> listados = JsonConvert.DeserializeObject<List<EstudianteCursoDTO>>(listadosJson);
+            List<int> idsCursos = new List<int>();
+            foreach (var x in listados)
+            {
+                idsCursos.Add(x.CursoID);
+            }
+            
+            try
+            {
+                return new JsonResult(await _service.GetDetalleCursos(idsCursos)) { StatusCode = 200 };
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
         }
 
