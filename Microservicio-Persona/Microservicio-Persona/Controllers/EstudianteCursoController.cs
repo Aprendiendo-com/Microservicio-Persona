@@ -85,23 +85,17 @@ namespace Microservicio_Persona.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetDetalleCursos([FromQuery] String listadosJson)
+        public async Task<IActionResult> GetDetalleCursos(int id)
         {
-            List<EstudianteCursoDTO> listados = JsonConvert.DeserializeObject<List<EstudianteCursoDTO>>(listadosJson);
-            List<int> idsCursos = new List<int>();
-            foreach (var x in listados)
-            {
-                idsCursos.Add(x.CursoID);
-            }
-            
             try
             {
-                return new JsonResult(await _service.GetDetalleCursos(idsCursos)) { StatusCode = 200 };
+                return new JsonResult(await _service.GetDetalleCursos(id)) { StatusCode = 200 };
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
+
         }
 
     }
