@@ -9,6 +9,7 @@ using Microservicio_Persona.Domain.Entities;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.Linq;
 
 namespace Microservicio_Persona.Aplication.Services
 {
@@ -19,7 +20,7 @@ namespace Microservicio_Persona.Aplication.Services
         List<EstudianteCursoDTO> GetCursosByEstudiante(int estudianteId);
         Task<List<EstudianteDTOs>> GetListado();
         int BajaCursoEstudiante(int estudianteId, int cursoId);
-        Task<List<CursoCompletoDTO>> GetDetalleCursos(List<int> idCursos);
+        Task<List<CursoCompletoDTO>> GetDetalleCursos(int id);
 
 
     }
@@ -78,21 +79,34 @@ namespace Microservicio_Persona.Aplication.Services
         }
 
 
-        public async Task<List<CursoCompletoDTO>> GetDetalleCursos(List<int> idCursos)
+        public async Task<List<CursoCompletoDTO>> GetDetalleCursos(int id)
         {
-            string url = "https://localhost:44326/api/Curso/GetCursosByLista";
-            
-            
+
+            var lista = _repository.Traer<EstudianteCurso>().Where(x => x.EstudianteID == id).ToList();
+            List<int> idsCurso = new List<int>();
+
+            foreach (var x in lista)
+            {
+                idsCurso.Add(x.CursoID);
+            }
+
             using (var http = new HttpClient())
             {
-                    var cursosJson = new StringContent(JsonConvert.SerializeObject(idCursos), Encoding.UTF8, "application/json");
-                    var response = await http.PatchAsync(url, cursosJson);
-                    var stringContentAsync = response.Content.ReadAsStringAsync().ConfigureAwait(false);                    
+                string url = "https://localhost:44308/api/Curso/GetCursosByLista";
+                var cursosJson = new StringContent(JsonConvert.SerializeObject(idsCurso), Encoding.UTF8, "application/json");
+                var response = await http.PatchAsync(url, cursosJson);
+                response.EnsureSuccessStatusCode();
+                var stringContentAsync = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
-                    List<CursoCompletoDTO> cursos = JsonConvert.DeserializeObject<List<CursoCompletoDTO>>(stringContentAsync.ToString());
 
-                    return  cursos;
-            }  
+                List<CursoCompletoDTO> cursos = JsonConvert.DeserializeObject<List<CursoCompletoDTO>>(stringContentAsync.ToString());
+
+                return cursos;
+            }
+
+
+
+
         }
     }
 }
