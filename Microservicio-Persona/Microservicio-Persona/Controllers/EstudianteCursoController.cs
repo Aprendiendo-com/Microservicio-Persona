@@ -88,6 +88,7 @@ namespace Microservicio_Persona.Controllers
         public async Task<IActionResult> GetDetalleCursos([FromQuery] String listadosJson)
         {
             List<EstudianteCursoDTO> listados = JsonConvert.DeserializeObject<List<EstudianteCursoDTO>>(listadosJson);
+            
             List<int> idsCursos = new List<int>();
             foreach (var x in listados)
             {

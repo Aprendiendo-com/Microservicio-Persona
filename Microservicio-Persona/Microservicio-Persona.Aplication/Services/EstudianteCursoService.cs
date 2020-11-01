@@ -80,7 +80,7 @@ namespace Microservicio_Persona.Aplication.Services
 
         public async Task<List<CursoCompletoDTO>> GetDetalleCursos(List<int> idCursos)
         {
-            string url = "https://localhost:44308/api/Curso/GetCursosByLista";
+            string url = "https://localhost:44326/api/Curso/GetCursosByLista";
             
             
             using (var http = new HttpClient())
@@ -89,7 +89,6 @@ namespace Microservicio_Persona.Aplication.Services
                     var response = await http.PatchAsync(url, cursosJson);
                     var stringContentAsync = response.Content.ReadAsStringAsync().ConfigureAwait(false);                    
 
-                    response.EnsureSuccessStatusCode();
                     List<CursoCompletoDTO> cursos = JsonConvert.DeserializeObject<List<CursoCompletoDTO>>(stringContentAsync.ToString());
 
                     return  cursos;
