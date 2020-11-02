@@ -54,6 +54,8 @@ namespace Microservicio_Persona.AccessData
                 entity.HasData(new Especialidad { EspecialidadId = 2, Descripcion = "Documentacion"});
                 entity.HasData(new Especialidad { EspecialidadId = 3, Descripcion = "Matematica"});
                 entity.HasData(new Especialidad { EspecialidadId = 4, Descripcion = "Base de datos"});
+                entity.HasData(new Especialidad { EspecialidadId = 5, Descripcion = "Idioma"});
+                entity.HasData(new Especialidad { EspecialidadId = 6, Descripcion = "Tecnico"});
             });
 
             modelBuilder.Entity<Profesor>(entity =>
@@ -65,6 +67,7 @@ namespace Microservicio_Persona.AccessData
                 entity.HasData(new Profesor { ProfesorId = 3, Nombre = "Octavio", Apellido = "Jorge", Email = "octaviojorge37@gmail.com>", EspecialidadId = 1 });
                 entity.HasData(new Profesor { ProfesorId = 4, Nombre = "Leonardo", Apellido = "Amet", Email = "leonardoAmet@gmail.com>", EspecialidadId = 1 }); 
                 entity.HasData(new Profesor { ProfesorId = 5, Nombre = "Jorge", Apellido = "Osio", Email = "jorgeosio@gmail.com>", EspecialidadId = 1 }); 
+                entity.HasData(new Profesor { ProfesorId = 6, Nombre = "Maria", Apellido = "Rosa", Email = "mariarosa@gmail.com>", EspecialidadId = 5 }); 
             }); 
 
             modelBuilder.Entity<Estudiante>(entity =>
@@ -74,7 +77,9 @@ namespace Microservicio_Persona.AccessData
                 entity.HasData(new Estudiante { EstudianteID = 2, Nombre = "Patricia", Apellido = "Gonzalez", Email = "patriciagonzalez@hotmail.com>", Legajo = 1234 });
                 entity.HasData(new Estudiante { EstudianteID = 3, Nombre = "Dimitri", Apellido = "Perez", Email = "dimitriperez@hotmail.com>", Legajo = 1235 });
                 entity.HasData(new Estudiante { EstudianteID = 4, Nombre = "Ariel", Apellido = "Lopez", Email = "ariellopez@hotmail.com>", Legajo = 1236 });
-                entity.HasData(new Estudiante { EstudianteID = 5, Nombre = "Camila", Apellido = "Sanchez", Email = "camilasanchez@hotmail.com>", Legajo = 1236 });
+                entity.HasData(new Estudiante { EstudianteID = 5, Nombre = "Camila", Apellido = "Sanchez", Email = "camilasanchez@hotmail.com>", Legajo = 1237 });
+                entity.HasData(new Estudiante { EstudianteID = 6, Nombre = "Paula", Apellido = "Gomez", Email = "paulagomez@hotmail.com>", Legajo = 1238 });
+                entity.HasData(new Estudiante { EstudianteID = 7, Nombre = "Mayra", Apellido = "Ayala", Email = "mayraayala@hotmail.com>", Legajo = 1239 });
             });
 
             modelBuilder.Entity<EstudianteCurso>(entity =>
@@ -87,6 +92,7 @@ namespace Microservicio_Persona.AccessData
                 entity.HasData(new EstudianteCurso { EstudianteCursoID = 105, CursoID = 2, EstudianteID = 1, Estado = "desaprobado"});
                 entity.HasData(new EstudianteCurso { EstudianteCursoID = 106, CursoID = 3, EstudianteID = 2, Estado = "desaprobado"});
                 entity.HasData(new EstudianteCurso { EstudianteCursoID = 107, CursoID = 3, EstudianteID = 3, Estado = "desaprobado"});
+                entity.HasData(new EstudianteCurso { EstudianteCursoID = 108, CursoID = 3, EstudianteID = 5, Estado = "aprobado"});
             });
 
         }
