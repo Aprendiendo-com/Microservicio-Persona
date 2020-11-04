@@ -85,14 +85,14 @@ namespace Microservicio_Persona.AccessData
             modelBuilder.Entity<EstudianteCurso>(entity =>
             {
                 entity.ToTable("EstudianteCurso");
-                entity.HasData(new EstudianteCurso { EstudianteCursoID = 101, CursoID = 1, EstudianteID = 1, Estado = "aprobado"});
-                entity.HasData(new EstudianteCurso { EstudianteCursoID = 102, CursoID = 1, EstudianteID = 2, Estado = "aprobado"});
-                entity.HasData(new EstudianteCurso { EstudianteCursoID = 103, CursoID = 2, EstudianteID = 3, Estado = "aprobado"});
-                entity.HasData(new EstudianteCurso { EstudianteCursoID = 104, CursoID = 2, EstudianteID = 4, Estado = "desaprobado"});
-                entity.HasData(new EstudianteCurso { EstudianteCursoID = 105, CursoID = 2, EstudianteID = 1, Estado = "desaprobado"});
-                entity.HasData(new EstudianteCurso { EstudianteCursoID = 106, CursoID = 3, EstudianteID = 2, Estado = "desaprobado"});
-                entity.HasData(new EstudianteCurso { EstudianteCursoID = 107, CursoID = 3, EstudianteID = 3, Estado = "desaprobado"});
-                entity.HasData(new EstudianteCurso { EstudianteCursoID = 108, CursoID = 3, EstudianteID = 5, Estado = "aprobado"});
+                entity.HasData(new EstudianteCurso { EstudianteCursoID = 1, CursoID = 1, EstudianteID = 1, Estado = "aprobado"});
+                entity.HasData(new EstudianteCurso { EstudianteCursoID = 2, CursoID = 1, EstudianteID = 2, Estado = "aprobado"});
+                entity.HasData(new EstudianteCurso { EstudianteCursoID = 3, CursoID = 2, EstudianteID = 3, Estado = "aprobado"});
+                entity.HasData(new EstudianteCurso { EstudianteCursoID = 4, CursoID = 2, EstudianteID = 4, Estado = "desaprobado"});
+                entity.HasData(new EstudianteCurso { EstudianteCursoID = 5, CursoID = 2, EstudianteID = 1, Estado = "desaprobado"});
+                entity.HasData(new EstudianteCurso { EstudianteCursoID = 6, CursoID = 3, EstudianteID = 2, Estado = "desaprobado"});
+                entity.HasData(new EstudianteCurso { EstudianteCursoID = 7, CursoID = 3, EstudianteID = 3, Estado = "desaprobado"});
+                entity.HasData(new EstudianteCurso { EstudianteCursoID = 8, CursoID = 3, EstudianteID = 5, Estado = "aprobado"});
             });
 
         }
