@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Microservicio_Persona.AccessData.Migrations
 {
     [DbContext(typeof(DbContexto))]
-    [Migration("20201021004112_Persona")]
-    partial class Persona
+    [Migration("20201111170118_createMigration")]
+    partial class createMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

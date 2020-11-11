@@ -24,6 +24,11 @@ namespace Microservicio_Persona.AccessData
 
         }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(" Server= .\\SQLEXPRESS ;Database=MicroservicioPersonav3;Trusted_Connection=True;MultipleActiveResultSets=true ");
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder) //METODO PARA CARGAR DATOS A LA BD DIRECTAMENTE, EN ESTE CASO CARGAREMOS A PROFESORES
         {
 
