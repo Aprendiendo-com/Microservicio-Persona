@@ -8,6 +8,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Text.Json.Serialization;
+using System.Linq;
+using System.Text;
 
 namespace Microservicio_Persona.Aplication.Services
 {
@@ -15,7 +17,7 @@ namespace Microservicio_Persona.Aplication.Services
     {
         Profesor CreateProfesor(ProfesorDTOs profesor);
        List<ProfesorDTOs> GetProfesoresByEspecialidad(string especialidad);
-       ProfesorDTOs GetById(int ProfesorId);
+       Task<List<CursoCompletoDTO>> GetById(int ProfesorId);
        List<ProfesorDTOs> GetAllProfesores();
        Task<List<RegistroDTOs>> GetRegistros();
         
@@ -50,10 +52,28 @@ namespace Microservicio_Persona.Aplication.Services
             return _query.GetProfesoresByEspecialidad(especialidad);
         }
 
-        public ProfesorDTOs GetById(int ProfesorId)
+        public async Task<List<CursoCompletoDTO>>  GetById(int ProfesorId)
         {
+            using var http = new HttpClient();
 
-            return _query.GetById(ProfesorId);
+            var url = "https://localhost:44308/api/Curso";
+
+            var request = await http.GetStringAsync(url);
+
+            var response = JsonConvert.DeserializeObject<List<CursoSimpleDTO>>(request).Where(x => x.ProfesorId == ProfesorId)
+                .Select(x => x.CursoId).ToList();
+
+
+            string url_2 = "https://localhost:44308/api/Curso/GetCursosByLista";
+            var cursosJson = new StringContent(JsonConvert.SerializeObject(response), Encoding.UTF8, "application/json");
+            var responseCursos = await http.PatchAsync(url_2, cursosJson);
+            responseCursos.EnsureSuccessStatusCode();
+            var stringContentAsync = await responseCursos.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+
+            List<CursoCompletoDTO> cursos = JsonConvert.DeserializeObject<List<CursoCompletoDTO>>(stringContentAsync.ToString());
+
+            return cursos;
         }
 
         public List<ProfesorDTOs> GetAllProfesores()

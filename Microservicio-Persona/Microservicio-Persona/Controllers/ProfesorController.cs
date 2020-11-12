@@ -50,11 +50,11 @@ namespace Microservicio_Persona.Controllers
         }
 
         [HttpGet("{id?}")]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
             try
             {
-                return new JsonResult(_service.GetById(id)) { StatusCode = 200 };
+                return new JsonResult(await _service.GetById(id)) { StatusCode = 200 };
             }
             catch (Exception e)
             {
