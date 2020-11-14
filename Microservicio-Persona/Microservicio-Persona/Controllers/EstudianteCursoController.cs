@@ -85,6 +85,7 @@ namespace Microservicio_Persona.Controllers
         }
 
         [HttpGet]
+        [Route("GetDetalleCursos/{id}")]
         public async Task<IActionResult> GetDetalleCursos(int id)
         {
             try
