@@ -90,7 +90,22 @@ namespace Microservicio_Persona.Controllers
                 return BadRequest(e.Message);
             }
         }
-        
+
+
+        [HttpGet]
+        [Route("ObtenerIdProfesor")]
+        public IActionResult GetId(int usuarioId)
+        {
+            try
+            {
+                return new JsonResult(_service.ObtenerProfesorId(usuarioId)) { StatusCode = 200 };
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
 
         // DELETE api/<ProfesorController>/5
         //[HttpDelete("{id}")]

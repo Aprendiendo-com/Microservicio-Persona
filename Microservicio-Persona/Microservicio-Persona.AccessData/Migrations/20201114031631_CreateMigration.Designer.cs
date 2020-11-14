@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Microservicio_Persona.AccessData.Migrations
 {
     [DbContext(typeof(DbContexto))]
-    [Migration("20201111170118_createMigration")]
-    partial class createMigration
+    [Migration("20201114031631_CreateMigration")]
+    partial class CreateMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -55,6 +55,16 @@ namespace Microservicio_Persona.AccessData.Migrations
                         {
                             EspecialidadId = 4,
                             Descripcion = "Base de datos"
+                        },
+                        new
+                        {
+                            EspecialidadId = 5,
+                            Descripcion = "Idioma"
+                        },
+                        new
+                        {
+                            EspecialidadId = 6,
+                            Descripcion = "Tecnico"
                         });
                 });
 
@@ -83,47 +93,12 @@ namespace Microservicio_Persona.AccessData.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
                     b.HasKey("EstudianteID");
 
                     b.ToTable("Estudiante");
-
-                    b.HasData(
-                        new
-                        {
-                            EstudianteID = 1,
-                            Apellido = "oliver",
-                            DNI = 0,
-                            Email = "pepeolivera@hotmail.com>",
-                            Legajo = 1233,
-                            Nombre = "pepe"
-                        },
-                        new
-                        {
-                            EstudianteID = 2,
-                            Apellido = "gonzalez",
-                            DNI = 0,
-                            Email = "pepag@hotmail.com>",
-                            Legajo = 1234,
-                            Nombre = "pepa"
-                        },
-                        new
-                        {
-                            EstudianteID = 3,
-                            Apellido = "perez",
-                            DNI = 0,
-                            Email = "juanperez@hotmail.com>",
-                            Legajo = 1235,
-                            Nombre = "juan"
-                        },
-                        new
-                        {
-                            EstudianteID = 4,
-                            Apellido = "lopez",
-                            DNI = 0,
-                            Email = "ariellopez@hotmail.com>",
-                            Legajo = 1236,
-                            Nombre = "ariel"
-                        });
                 });
 
             modelBuilder.Entity("Microservicio_Persona.Domain.Entities.EstudianteCurso", b =>
@@ -147,57 +122,6 @@ namespace Microservicio_Persona.AccessData.Migrations
                     b.HasIndex("EstudianteID");
 
                     b.ToTable("EstudianteCurso");
-
-                    b.HasData(
-                        new
-                        {
-                            EstudianteCursoID = 101,
-                            CursoID = 1,
-                            Estado = "aprobado",
-                            EstudianteID = 1
-                        },
-                        new
-                        {
-                            EstudianteCursoID = 102,
-                            CursoID = 1,
-                            Estado = "aprobado",
-                            EstudianteID = 2
-                        },
-                        new
-                        {
-                            EstudianteCursoID = 103,
-                            CursoID = 2,
-                            Estado = "aprobado",
-                            EstudianteID = 3
-                        },
-                        new
-                        {
-                            EstudianteCursoID = 104,
-                            CursoID = 2,
-                            Estado = "desaprobado",
-                            EstudianteID = 4
-                        },
-                        new
-                        {
-                            EstudianteCursoID = 105,
-                            CursoID = 2,
-                            Estado = "desaprobado",
-                            EstudianteID = 1
-                        },
-                        new
-                        {
-                            EstudianteCursoID = 106,
-                            CursoID = 3,
-                            Estado = "desaprobado",
-                            EstudianteID = 2
-                        },
-                        new
-                        {
-                            EstudianteCursoID = 107,
-                            CursoID = 3,
-                            Estado = "desaprobado",
-                            EstudianteID = 3
-                        });
                 });
 
             modelBuilder.Entity("Microservicio_Persona.Domain.Entities.Profesor", b =>
@@ -222,6 +146,9 @@ namespace Microservicio_Persona.AccessData.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("int");
+
                     b.HasKey("ProfesorId");
 
                     b.HasIndex("EspecialidadId");
@@ -232,34 +159,56 @@ namespace Microservicio_Persona.AccessData.Migrations
                         new
                         {
                             ProfesorId = 1,
-                            Apellido = "olivera",
-                            Email = "lolivera.unaj@gmail.com>",
+                            Apellido = "Olivera",
+                            Email = "lolivera.unaj@gmail.com",
                             EspecialidadId = 1,
-                            Nombre = "lucas"
+                            Nombre = "Lucas",
+                            UsuarioId = 20
                         },
                         new
                         {
                             ProfesorId = 2,
-                            Apellido = "conde",
-                            Email = "sergiounaj@gmail.com>",
+                            Apellido = "Conde",
+                            Email = "sergiounaj@gmail.com",
                             EspecialidadId = 2,
-                            Nombre = "sergio"
+                            Nombre = "Sergio",
+                            UsuarioId = 21
                         },
                         new
                         {
                             ProfesorId = 3,
-                            Apellido = "jorge",
-                            Email = "octaviojorge37@gmail.com>",
+                            Apellido = "Jorge",
+                            Email = "octaviojorge37@gmail.com",
                             EspecialidadId = 1,
-                            Nombre = "octavio"
+                            Nombre = "Octavio",
+                            UsuarioId = 22
                         },
                         new
                         {
                             ProfesorId = 4,
                             Apellido = "Amet",
-                            Email = "leonardoAmet@gmail.com>",
+                            Email = "leonardoAmet@gmail.com",
                             EspecialidadId = 1,
-                            Nombre = "leonardo"
+                            Nombre = "Leonardo",
+                            UsuarioId = 23
+                        },
+                        new
+                        {
+                            ProfesorId = 5,
+                            Apellido = "Osio",
+                            Email = "jorgeosio@gmail.com",
+                            EspecialidadId = 1,
+                            Nombre = "Jorge",
+                            UsuarioId = 24
+                        },
+                        new
+                        {
+                            ProfesorId = 6,
+                            Apellido = "Rosa",
+                            Email = "mariarosa@gmail.com",
+                            EspecialidadId = 5,
+                            Nombre = "Maria",
+                            UsuarioId = 25
                         });
                 });
 

@@ -46,10 +46,12 @@ namespace Microservicio_Persona.AccessData
             modelBuilder.Entity<Profesor>().Property(p => p.Nombre).IsRequired();
             modelBuilder.Entity<Profesor>().Property(p => p.Apellido).IsRequired();
             modelBuilder.Entity<Profesor>().Property(p => p.Email).IsRequired();
+            modelBuilder.Entity<Profesor>().Property(p => p.UsuarioId).IsRequired();
             modelBuilder.Entity<Estudiante>().Property(p => p.Nombre).IsRequired();
             modelBuilder.Entity<Estudiante>().Property(p => p.Apellido).IsRequired();
             modelBuilder.Entity<Estudiante>().Property(p => p.Email).IsRequired();
             modelBuilder.Entity<Estudiante>().Property(p => p.Legajo).IsRequired();
+            modelBuilder.Entity<Estudiante>().Property(p => p.UsuarioId).IsRequired();
 
 
             modelBuilder.Entity<Especialidad>(entity =>
@@ -67,37 +69,37 @@ namespace Microservicio_Persona.AccessData
             {
                 entity.ToTable("Profesor");
 
-                entity.HasData(new Profesor { ProfesorId = 1, Nombre = "Lucas", Apellido = "Olivera", Email = "lolivera.unaj@gmail.com>", EspecialidadId = 1 });
-                entity.HasData(new Profesor { ProfesorId = 2, Nombre = "Sergio", Apellido = "Conde", Email = "sergiounaj@gmail.com>", EspecialidadId = 2 });
-                entity.HasData(new Profesor { ProfesorId = 3, Nombre = "Octavio", Apellido = "Jorge", Email = "octaviojorge37@gmail.com>", EspecialidadId = 1 });
-                entity.HasData(new Profesor { ProfesorId = 4, Nombre = "Leonardo", Apellido = "Amet", Email = "leonardoAmet@gmail.com>", EspecialidadId = 1 }); 
-                entity.HasData(new Profesor { ProfesorId = 5, Nombre = "Jorge", Apellido = "Osio", Email = "jorgeosio@gmail.com>", EspecialidadId = 1 }); 
-                entity.HasData(new Profesor { ProfesorId = 6, Nombre = "Maria", Apellido = "Rosa", Email = "mariarosa@gmail.com>", EspecialidadId = 5 }); 
+                entity.HasData(new Profesor { ProfesorId = 1, Nombre = "Lucas", Apellido = "Olivera", Email = "lolivera.unaj@gmail.com", EspecialidadId = 1 , UsuarioId = 20});
+                entity.HasData(new Profesor { ProfesorId = 2, Nombre = "Sergio", Apellido = "Conde", Email = "sergiounaj@gmail.com", EspecialidadId = 2, UsuarioId = 21 });
+                entity.HasData(new Profesor { ProfesorId = 3, Nombre = "Octavio", Apellido = "Jorge", Email = "octaviojorge37@gmail.com", EspecialidadId = 1, UsuarioId = 22 });
+                entity.HasData(new Profesor { ProfesorId = 4, Nombre = "Leonardo", Apellido = "Amet", Email = "leonardoAmet@gmail.com", EspecialidadId = 1, UsuarioId = 23 }); 
+                entity.HasData(new Profesor { ProfesorId = 5, Nombre = "Jorge", Apellido = "Osio", Email = "jorgeosio@gmail.com", EspecialidadId = 1, UsuarioId = 24 }); 
+                entity.HasData(new Profesor { ProfesorId = 6, Nombre = "Maria", Apellido = "Rosa", Email = "mariarosa@gmail.com", EspecialidadId = 5, UsuarioId = 25 }); 
             }); 
 
             modelBuilder.Entity<Estudiante>(entity =>
             {
-                entity.ToTable("Estudiante");
-                entity.HasData(new Estudiante { EstudianteID = 1, Nombre = "Pablo", Apellido = "Oliver", Email = "pablolivera@hotmail.com>", Legajo = 1233 });
-                entity.HasData(new Estudiante { EstudianteID = 2, Nombre = "Patricia", Apellido = "Gonzalez", Email = "patriciagonzalez@hotmail.com>", Legajo = 1234 });
-                entity.HasData(new Estudiante { EstudianteID = 3, Nombre = "Dimitri", Apellido = "Perez", Email = "dimitriperez@hotmail.com>", Legajo = 1235 });
-                entity.HasData(new Estudiante { EstudianteID = 4, Nombre = "Ariel", Apellido = "Lopez", Email = "ariellopez@hotmail.com>", Legajo = 1236 });
-                entity.HasData(new Estudiante { EstudianteID = 5, Nombre = "Camila", Apellido = "Sanchez", Email = "camilasanchez@hotmail.com>", Legajo = 1237 });
-                entity.HasData(new Estudiante { EstudianteID = 6, Nombre = "Paula", Apellido = "Gomez", Email = "paulagomez@hotmail.com>", Legajo = 1238 });
-                entity.HasData(new Estudiante { EstudianteID = 7, Nombre = "Mayra", Apellido = "Ayala", Email = "mayraayala@hotmail.com>", Legajo = 1239 });
+                //entity.ToTable("Estudiante");
+                //entity.HasData(new Estudiante { EstudianteID = 1, Nombre = "Pablo", Apellido = "Oliver", Email = "pablolivera@hotmail.com>", Legajo = 1233 });
+                //entity.HasData(new Estudiante { EstudianteID = 2, Nombre = "Patricia", Apellido = "Gonzalez", Email = "patriciagonzalez@hotmail.com>", Legajo = 1234 });
+                //entity.HasData(new Estudiante { EstudianteID = 3, Nombre = "Dimitri", Apellido = "Perez", Email = "dimitriperez@hotmail.com>", Legajo = 1235 });
+                //entity.HasData(new Estudiante { EstudianteID = 4, Nombre = "Ariel", Apellido = "Lopez", Email = "ariellopez@hotmail.com>", Legajo = 1236 });
+                //entity.HasData(new Estudiante { EstudianteID = 5, Nombre = "Camila", Apellido = "Sanchez", Email = "camilasanchez@hotmail.com>", Legajo = 1237 });
+                //entity.HasData(new Estudiante { EstudianteID = 6, Nombre = "Paula", Apellido = "Gomez", Email = "paulagomez@hotmail.com>", Legajo = 1238 });
+                //entity.HasData(new Estudiante { EstudianteID = 7, Nombre = "Mayra", Apellido = "Ayala", Email = "mayraayala@hotmail.com>", Legajo = 1239 });
             });
 
             modelBuilder.Entity<EstudianteCurso>(entity =>
             {
-                entity.ToTable("EstudianteCurso");
-                entity.HasData(new EstudianteCurso { EstudianteCursoID = 1, CursoID = 1, EstudianteID = 1, Estado = "aprobado"});
-                entity.HasData(new EstudianteCurso { EstudianteCursoID = 2, CursoID = 1, EstudianteID = 2, Estado = "aprobado"});
-                entity.HasData(new EstudianteCurso { EstudianteCursoID = 3, CursoID = 2, EstudianteID = 3, Estado = "aprobado"});
-                entity.HasData(new EstudianteCurso { EstudianteCursoID = 4, CursoID = 2, EstudianteID = 4, Estado = "desaprobado"});
-                entity.HasData(new EstudianteCurso { EstudianteCursoID = 5, CursoID = 2, EstudianteID = 1, Estado = "desaprobado"});
-                entity.HasData(new EstudianteCurso { EstudianteCursoID = 6, CursoID = 3, EstudianteID = 2, Estado = "desaprobado"});
-                entity.HasData(new EstudianteCurso { EstudianteCursoID = 7, CursoID = 3, EstudianteID = 3, Estado = "desaprobado"});
-                entity.HasData(new EstudianteCurso { EstudianteCursoID = 8, CursoID = 3, EstudianteID = 5, Estado = "aprobado"});
+                //entity.ToTable("EstudianteCurso");
+                //entity.HasData(new EstudianteCurso { EstudianteCursoID = 1, CursoID = 1, EstudianteID = 1, Estado = "aprobado"});
+                //entity.HasData(new EstudianteCurso { EstudianteCursoID = 2, CursoID = 1, EstudianteID = 2, Estado = "aprobado"});
+                //entity.HasData(new EstudianteCurso { EstudianteCursoID = 3, CursoID = 2, EstudianteID = 3, Estado = "aprobado"});
+                //entity.HasData(new EstudianteCurso { EstudianteCursoID = 4, CursoID = 2, EstudianteID = 4, Estado = "desaprobado"});
+                //entity.HasData(new EstudianteCurso { EstudianteCursoID = 5, CursoID = 2, EstudianteID = 1, Estado = "desaprobado"});
+                //entity.HasData(new EstudianteCurso { EstudianteCursoID = 6, CursoID = 3, EstudianteID = 2, Estado = "desaprobado"});
+                //entity.HasData(new EstudianteCurso { EstudianteCursoID = 7, CursoID = 3, EstudianteID = 3, Estado = "desaprobado"});
+                //entity.HasData(new EstudianteCurso { EstudianteCursoID = 8, CursoID = 3, EstudianteID = 5, Estado = "aprobado"});
             });
 
         }

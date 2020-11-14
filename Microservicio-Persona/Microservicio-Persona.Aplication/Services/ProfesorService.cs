@@ -20,6 +20,7 @@ namespace Microservicio_Persona.Aplication.Services
        Task<List<CursoCompletoDTO>> GetById(int ProfesorId);
        List<ProfesorDTOs> GetAllProfesores();
        Task<List<RegistroDTOs>> GetRegistros();
+        int ObtenerProfesorId(int usuarioId);
         
     }
     public class ProfesorService : IProfesorService
@@ -40,7 +41,8 @@ namespace Microservicio_Persona.Aplication.Services
                 Nombre = profesor.Nombre,
                 Apellido = profesor.Apellido,
                 Email = profesor.Email,
-                EspecialidadId = profesor.EspecialidadId
+                EspecialidadId = profesor.EspecialidadId,
+                UsuarioId = profesor.UsuarioId
             };
             _repository.Add<Profesor>(entity);
             Console.WriteLine("creando profesor");
@@ -101,6 +103,13 @@ namespace Microservicio_Persona.Aplication.Services
 
                     return  registros;
             }  
+        }
+
+        public int ObtenerProfesorId(int usuarioId)
+        {
+            var id = this._repository.Traer<Profesor>().Where(x => x.UsuarioId == usuarioId).Select(x => x.UsuarioId).FirstOrDefault();
+
+            return id;
         }
     }
 }

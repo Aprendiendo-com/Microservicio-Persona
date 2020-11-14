@@ -2,7 +2,7 @@
 
 namespace Microservicio_Persona.AccessData.Migrations
 {
-    public partial class createMigration : Migration
+    public partial class CreateMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -29,7 +29,8 @@ namespace Microservicio_Persona.AccessData.Migrations
                     Apellido = table.Column<string>(nullable: false),
                     Email = table.Column<string>(nullable: false),
                     DNI = table.Column<int>(nullable: false),
-                    Legajo = table.Column<int>(nullable: false)
+                    Legajo = table.Column<int>(nullable: false),
+                    UsuarioId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -45,7 +46,8 @@ namespace Microservicio_Persona.AccessData.Migrations
                     Nombre = table.Column<string>(nullable: false),
                     Apellido = table.Column<string>(nullable: false),
                     Email = table.Column<string>(nullable: false),
-                    EspecialidadId = table.Column<int>(nullable: false)
+                    EspecialidadId = table.Column<int>(nullable: false),
+                    UsuarioId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -87,43 +89,22 @@ namespace Microservicio_Persona.AccessData.Migrations
                     { 1, "Programacion" },
                     { 2, "Documentacion" },
                     { 3, "Matematica" },
-                    { 4, "Base de datos" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Estudiante",
-                columns: new[] { "EstudianteID", "Apellido", "DNI", "Email", "Legajo", "Nombre" },
-                values: new object[,]
-                {
-                    { 1, "oliver", 0, "pepeolivera@hotmail.com>", 1233, "pepe" },
-                    { 2, "gonzalez", 0, "pepag@hotmail.com>", 1234, "pepa" },
-                    { 3, "perez", 0, "juanperez@hotmail.com>", 1235, "juan" },
-                    { 4, "lopez", 0, "ariellopez@hotmail.com>", 1236, "ariel" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "EstudianteCurso",
-                columns: new[] { "EstudianteCursoID", "CursoID", "Estado", "EstudianteID" },
-                values: new object[,]
-                {
-                    { 101, 1, "aprobado", 1 },
-                    { 105, 2, "desaprobado", 1 },
-                    { 102, 1, "aprobado", 2 },
-                    { 106, 3, "desaprobado", 2 },
-                    { 103, 2, "aprobado", 3 },
-                    { 107, 3, "desaprobado", 3 },
-                    { 104, 2, "desaprobado", 4 }
+                    { 4, "Base de datos" },
+                    { 5, "Idioma" },
+                    { 6, "Tecnico" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Profesor",
-                columns: new[] { "ProfesorId", "Apellido", "Email", "EspecialidadId", "Nombre" },
+                columns: new[] { "ProfesorId", "Apellido", "Email", "EspecialidadId", "Nombre", "UsuarioId" },
                 values: new object[,]
                 {
-                    { 1, "olivera", "lolivera.unaj@gmail.com>", 1, "lucas" },
-                    { 3, "jorge", "octaviojorge37@gmail.com>", 1, "octavio" },
-                    { 4, "Amet", "leonardoAmet@gmail.com>", 1, "leonardo" },
-                    { 2, "conde", "sergiounaj@gmail.com>", 2, "sergio" }
+                    { 1, "Olivera", "lolivera.unaj@gmail.com", 1, "Lucas", 20 },
+                    { 3, "Jorge", "octaviojorge37@gmail.com", 1, "Octavio", 22 },
+                    { 4, "Amet", "leonardoAmet@gmail.com", 1, "Leonardo", 23 },
+                    { 5, "Osio", "jorgeosio@gmail.com", 1, "Jorge", 24 },
+                    { 2, "Conde", "sergiounaj@gmail.com", 2, "Sergio", 21 },
+                    { 6, "Rosa", "mariarosa@gmail.com", 5, "Maria", 25 }
                 });
 
             migrationBuilder.CreateIndex(
