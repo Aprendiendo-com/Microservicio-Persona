@@ -35,8 +35,8 @@ namespace Microservicio_Persona
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen();
-            var connectionString = Configuration.GetSection("ConnectionString").Value; //busca las configuraciones del sistema
-            services.AddDbContext<DbContexto>(options => options.UseSqlServer(connectionString)); 
+            var connectionString = Configuration.GetConnectionString("DefaultConnection"); //busca las configuraciones del sistema
+            services.AddDbContext<DbContexto>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))); 
             // SQLKATA
             services.AddTransient<Compiler, SqlServerCompiler>();
             services.AddTransient<IDbConnection>(b =>

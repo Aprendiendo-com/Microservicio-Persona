@@ -4,6 +4,7 @@ using Microservicio_Persona.Domain.Command;
 using Microservicio_Persona.Domain.DTOs;
 using Microservicio_Persona.Domain.Query;
 using Microservicio_Persona.Domain.Entities;
+using System.Linq;
 
 namespace Microservicio_Persona.Aplication.Services
 {
@@ -12,6 +13,8 @@ namespace Microservicio_Persona.Aplication.Services
         Estudiante CreateEstudiante(EstudianteDTOs estudiante);
         List<EstudianteDTOs> GetAllEstudiantes(); 
         EstudianteDTOs GetById(int EstudianteId);
+
+        int ObtenerEstudianteId(int usuarioId);
 
     }
     public class EstudianteService : IEstudianteService
@@ -32,7 +35,8 @@ namespace Microservicio_Persona.Aplication.Services
                 Nombre = estudiante.Nombre,
                 Apellido = estudiante.Apellido,
                 Email = estudiante.Email,
-                Legajo = estudiante.Legajo
+                Legajo = estudiante.Legajo,
+                UsuarioId = estudiante.UsuarioId
             };
             _repository.Add<Estudiante>(entity);
             Console.WriteLine("creando alumno");
@@ -51,6 +55,12 @@ namespace Microservicio_Persona.Aplication.Services
            return  _query.GetAllEstudiantes();
         }
 
+        public int ObtenerEstudianteId(int usuarioId)
+        {
+            var id = this._repository.Traer<Estudiante>().Where(x => x.UsuarioId == usuarioId).Select(x => x.UsuarioId).FirstOrDefault();
+
+            return id;
+        }
     }
 }
 

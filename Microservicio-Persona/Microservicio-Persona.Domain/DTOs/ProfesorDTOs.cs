@@ -14,5 +14,6 @@ namespace Microservicio_Persona.Domain.DTOs
         public string Email { get; set; }
 
         public int EspecialidadId { get; set; }
+        public int UsuarioId { get; set; }
     }
 }

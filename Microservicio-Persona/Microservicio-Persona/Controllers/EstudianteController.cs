@@ -57,6 +57,21 @@ namespace Microservicio_Persona.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("ObtenerIdEstudiante")]
+        public IActionResult GetId(int usuarioId)
+        {
+            try
+            {
+                return new JsonResult(_service.ObtenerEstudianteId(usuarioId)) { StatusCode = 200 };
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
 
 
         //[Route("Dar de baja a un estudiante")]

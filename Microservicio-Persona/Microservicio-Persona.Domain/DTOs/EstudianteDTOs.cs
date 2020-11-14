@@ -11,5 +11,6 @@ namespace Microservicio_Persona.Domain.DTOs
         public string Apellido { get; set; }
         public string Email { get; set; }
         public int Legajo { get; set; }
+        public int UsuarioId { get; set; }
     }
 }
