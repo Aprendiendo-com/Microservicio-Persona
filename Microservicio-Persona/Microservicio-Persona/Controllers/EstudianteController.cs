@@ -58,7 +58,7 @@ namespace Microservicio_Persona.Controllers
         }
 
         [HttpGet]
-        [Route("ObtenerIdEstudiante")]
+        [Route("ObtenerIdEstudiante/{usuarioId}")]
         public IActionResult GetId(int usuarioId)
         {
             try
