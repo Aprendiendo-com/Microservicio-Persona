@@ -107,7 +107,7 @@ namespace Microservicio_Persona.Aplication.Services
 
         public int ObtenerProfesorId(int usuarioId)
         {
-            var id = this._repository.Traer<Profesor>().Where(x => x.UsuarioId == usuarioId).Select(x => x.UsuarioId).FirstOrDefault();
+            var id = this._repository.Traer<Profesor>().Where(x => x.UsuarioId == usuarioId).Select(x => x.ProfesorId).FirstOrDefault();
 
             return id;
         }

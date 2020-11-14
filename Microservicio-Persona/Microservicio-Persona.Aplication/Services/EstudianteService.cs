@@ -57,7 +57,7 @@ namespace Microservicio_Persona.Aplication.Services
 
         public int ObtenerEstudianteId(int usuarioId)
         {
-            var id = this._repository.Traer<Estudiante>().Where(x => x.UsuarioId == usuarioId).Select(x => x.UsuarioId).FirstOrDefault();
+            var id = this._repository.Traer<Estudiante>().Where(x => x.UsuarioId == usuarioId).Select(x => x.EstudianteID).FirstOrDefault();
 
             return id;
         }
