@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microservicio_Persona.Aplication.Services;
 using Microservicio_Persona.Domain.DTOs;
 using Microservicio_Persona.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -13,6 +14,7 @@ namespace Microservicio_Persona.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ProfesorController : ControllerBase
     {
         private readonly IProfesorService _service;

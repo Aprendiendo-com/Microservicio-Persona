@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microservicio_Persona.Aplication.Services;
 using Microservicio_Persona.Domain.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -12,6 +13,7 @@ namespace Microservicio_Persona.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class EstudianteCursoController : ControllerBase
     {
         private readonly IEstudianteCursoService _service;
