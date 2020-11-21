@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservicio-Persona.Appli
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microservicio-Persona.Domain", "Microservicio-Persona.Domain\Microservicio-Persona.Domain.csproj", "{1F0D0482-3A30-4998-8FA2-6BE029718838}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservicio-Persona.Autorizacion", "Microservicio-Persona.Autorizacion\Microservicio-Persona.Autorizacion.csproj", "{91CFA56F-3118-4891-B538-76764220CC7C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{1F0D0482-3A30-4998-8FA2-6BE029718838}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F0D0482-3A30-4998-8FA2-6BE029718838}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F0D0482-3A30-4998-8FA2-6BE029718838}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91CFA56F-3118-4891-B538-76764220CC7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91CFA56F-3118-4891-B538-76764220CC7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91CFA56F-3118-4891-B538-76764220CC7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91CFA56F-3118-4891-B538-76764220CC7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

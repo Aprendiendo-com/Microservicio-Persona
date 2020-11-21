@@ -15,6 +15,7 @@ using Microservicio_Persona.AccessData.Queries;
 using Microservicio_Persona.Aplication.Services;
 using DocumentFormat.OpenXml.InkML;
 using Microsoft.OpenApi.Models;
+using Microservicio_Persona.Autorizacion;
 
 namespace Microservicio_Persona
 {
@@ -34,7 +35,40 @@ namespace Microservicio_Persona
 
 
             // Register the Swagger generator, defining 1 or more Swagger documents
-            services.AddSwaggerGen();
+            //services.AddSwaggerGen();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "My API",
+                    Version = "v1"
+                });
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    In = ParameterLocation.Header,
+                    Description = "Please insert JWT with Bearer into field",
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        new string[] { }
+                    }
+                });
+            });
+
+
+
+
             var connectionString = Configuration.GetConnectionString("DefaultConnection"); //busca las configuraciones del sistema
             services.AddDbContext<DbContexto>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))); 
             // SQLKATA
@@ -65,7 +99,9 @@ namespace Microservicio_Persona
             services.AddScoped<IEstudianteQuery, EstudianteQuery>();
             services.AddScoped<IProfesorQuery, ProfesorQuery>();
             services.AddScoped<IProfesorQuery, ProfesorQuery>();
-            services.AddScoped<IEstudianteCursoQuery, EstudianteCursoQuery>();            
+            services.AddScoped<IEstudianteCursoQuery, EstudianteCursoQuery>();
+
+            services.AddJWTAuthentication(Configuration);
 
 
         }
@@ -93,8 +129,10 @@ namespace Microservicio_Persona
 
             app.UseRouting();
             app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+
+            app.UseAuthentication();
             app.UseAuthorization();
-            
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
