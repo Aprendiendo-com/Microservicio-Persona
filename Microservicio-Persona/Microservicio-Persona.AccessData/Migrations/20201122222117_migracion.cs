@@ -2,7 +2,7 @@
 
 namespace Microservicio_Persona.AccessData.Migrations
 {
-    public partial class CreateMigration : Migration
+    public partial class migracion : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
