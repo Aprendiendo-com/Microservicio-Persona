@@ -15,7 +15,8 @@ namespace Microservicio_Persona.Aplication.Services
 {
    public interface IEstudianteCursoService
     {
-        EstudianteCurso CreateRelacion(EstudianteCursoDTO profesor);
+        Task<EstudianteCurso> CreateRelacion(EstudianteCursoDTO relacion);
+        /*EstudianteCurso CreateRelacion(EstudianteCursoDTO profesor);*/
         List<ResponseGetEstudiantesByCurso> GetEstudiantesByCurso(int cursoId);
         List<EstudianteCursoDTO> GetCursosByEstudiante(int estudianteId);
         Task<List<EstudianteDTOs>> GetListado();
@@ -34,8 +35,19 @@ namespace Microservicio_Persona.Aplication.Services
             _query= query;
         }
 
-        public EstudianteCurso CreateRelacion(EstudianteCursoDTO relacion) 
+
+
+
+        public async Task<EstudianteCurso> CreateRelacion(EstudianteCursoDTO relacion) 
         {
+            /*
+            Program p = new Program();
+            p.EnviarMailAsync().Wait();
+            */
+
+           var respuesta = await RestarCupoDeCurso(relacion.CursoID);
+
+
             var entity = new EstudianteCurso
             {
                 EstudianteCursoID = relacion.EstudianteCursoID,
@@ -48,7 +60,37 @@ namespace Microservicio_Persona.Aplication.Services
             return entity;
         }
 
-        public List<ResponseGetEstudiantesByCurso> GetEstudiantesByCurso(int cursoId)
+        public async Task<CursoRespondeAsyncDTO> RestarCupoDeCurso(int idCurso)
+        {
+            RequestIdCursoDTO curso = new RequestIdCursoDTO
+            {
+                CursoId = idCurso
+            };
+            using (var http = new HttpClient())
+            {
+                string url = "https://localhost:44308/api/Curso/RestarCupoById";
+                var uri = new Uri(url);
+                var cursosJson = new StringContent(JsonConvert.SerializeObject(curso), Encoding.UTF8, "application/json");
+
+                var response = await http.PutAsync(uri, cursosJson);
+                response.EnsureSuccessStatusCode();
+                var stringContentAsync = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+
+
+
+                CursoRespondeAsyncDTO cursoConId = JsonConvert.DeserializeObject<CursoRespondeAsyncDTO>(stringContentAsync.ToString());
+
+                return cursoConId;
+            }
+        }
+
+
+
+
+
+
+            public List<ResponseGetEstudiantesByCurso> GetEstudiantesByCurso(int cursoId)
         {
 
            return  _query.GetEstudiantesByCurso(cursoId);

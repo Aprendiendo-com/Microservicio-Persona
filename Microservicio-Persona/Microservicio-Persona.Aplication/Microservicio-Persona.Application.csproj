@@ -26,6 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\email\email.csproj" />
     <ProjectReference Include="..\Microservicio-Persona.Domain\Microservicio-Persona.Domain.csproj" />
   </ItemGroup>
 
