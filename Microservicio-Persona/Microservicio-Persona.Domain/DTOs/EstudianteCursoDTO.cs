@@ -7,7 +7,7 @@ namespace Microservicio_Persona.Domain.DTOs
         public int CursoID { get; set; }
         public int EstudianteID { get; set; }
         public string Estado { get; set; }
-        
-       
+    
+    
     }
 }

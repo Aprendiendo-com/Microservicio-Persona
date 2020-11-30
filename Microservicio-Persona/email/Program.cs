@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Net;
 using System.Net.Mail;
+using System.Threading.Tasks;
 
 namespace email
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -50,6 +51,41 @@ namespace email
                 Console.WriteLine(ex.Message);
                 Console.ReadKey();
             }
+        }
+
+        public async Task EnviarMailAsync()
+        {
+            string SendersAddress = "web.aprendiendo.com@gmail.com";
+            string ReceiversAddress = "daniel.tq04@gmail.com";
+            const string SendersPassword = "WAprendiendo3";
+            const string subject = "Incripcion en Aprendiendo.com";
+
+            const string body = "<body style='margin: 0; padding: 0; '>" +
+                "<div class='contenedor' style='background-color:red;'>" +
+                "Hola" +
+                "</div>" +
+                "</body>";
+
+                SmtpClient smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(SendersAddress, SendersPassword),
+                    Timeout = 4000
+
+                };
+                MailMessage message = new MailMessage(SendersAddress, ReceiversAddress, subject, body);
+                message.IsBodyHtml = true;
+                /*
+                smtp.Send(message);*/
+                /*await smtp.SendMailAsync(message);*/
+                await smtp.SendMailAsync(message);
+
+
+
         }
     }
 }
