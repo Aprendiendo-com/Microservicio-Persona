@@ -40,7 +40,7 @@ namespace Microservicio_Persona.Controllers
 
             const string body = "<body style='margin: 0; padding: 0; '>" +
                 "<div class='contenedor' style='background-color:red;'>" +
-                "Inscripcion con exito" +
+                "Inscripcion con exito a las materias" +
                 "</div>" +
                 "</body>";
             try
