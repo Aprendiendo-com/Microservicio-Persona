@@ -43,7 +43,7 @@ namespace Microservicio_Persona.AccessData.Queries
                             "Estudiante.Nombre",
                             "Estudiante.Apellido",
                             "Estudiante.Email",
-                            "Estudiante.Legajo",
+                            "Estudiante.Dni",
                             "EstudianteCurso.Estado")
                             .Join("Estudiante", "EstudianteCurso.EstudianteID", "Estudiante.EstudianteID")
                             .Where("CursoID", "=", cursoId);

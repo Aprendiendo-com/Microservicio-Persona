@@ -25,11 +25,42 @@ namespace Microservicio_Persona.Controllers
 
         // POST api/<EstudianteCursoController>
         [HttpPost]
-        public async Task<IActionResult> Post(EstudianteCursoDTO estudianteCurso)
+        public IActionResult Post(EstudianteCursoDTO estudianteCurso)
         {
+
+            string SendersAddress = "octaviojorge37@gmail.com";
+
+            string ReceiversAddress = "octaviojorge37@gmail.com";
+
+            const string SendersPassword = "octaguitarra98";
+
+            const string subject = "Prueba";
+
+
+
+            const string body = "<body style='margin: 0; padding: 0; '>" +
+                "<div class='contenedor' style='background-color:red;'>" +
+                "Inscripcion con exito a las materias" +
+                "</div>" +
+                "</body>";
             try
             {
-                return new JsonResult(await _service.CreateRelacion(estudianteCurso)) { StatusCode = 200 };
+                SmtpClient smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    Credentials = new NetworkCredential(SendersAddress, SendersPassword),
+                    Timeout = 3000
+                };
+
+                MailMessage message = new MailMessage(SendersAddress, ReceiversAddress, subject, body);
+
+                /*PARA AÑADIR TEXTO HTML*/
+                message.IsBodyHtml = true;
+                smtp.Send(message);
+                return new JsonResult(_service.CreateRelacion(estudianteCurso)) { StatusCode = 200 };
 
 
             }
