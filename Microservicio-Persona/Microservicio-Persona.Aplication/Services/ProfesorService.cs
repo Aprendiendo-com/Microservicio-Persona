@@ -56,7 +56,10 @@ namespace Microservicio_Persona.Aplication.Services
 
         public async Task<List<CursoCompletoDTO>>  GetById(int ProfesorId)
         {
-            using var http = new HttpClient();
+            HttpClientHandler clientHandler = new HttpClientHandler();
+            clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+
+            using var http = new HttpClient(clientHandler);
 
             var url = "https://localhost:44308/api/Curso";
 
@@ -87,9 +90,12 @@ namespace Microservicio_Persona.Aplication.Services
         public async Task<List<RegistroDTOs>> GetRegistros()
         {
             string url = "https://localhost:44326/api/Registro";
-            
-            
-            using (var http = new HttpClient())
+
+            HttpClientHandler clientHandler = new HttpClientHandler();
+            clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+
+
+            using (var http = new HttpClient(clientHandler))
             {
                     string request = await http.GetStringAsync(url);
 
