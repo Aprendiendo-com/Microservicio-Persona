@@ -143,7 +143,11 @@ namespace Microservicio_Persona.Aplication.Services
             {
                 CursoId = idCurso
             };
-            using (var http = new HttpClient())
+
+            HttpClientHandler clientHandler = new HttpClientHandler();
+            clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+
+            using (var http = new HttpClient(clientHandler))
             {
                 string url = "https://localhost:44308/api/Curso/RestarCupoById";
                 var uri = new Uri(url);
@@ -182,9 +186,12 @@ namespace Microservicio_Persona.Aplication.Services
         public async Task<List<EstudianteDTOs>> GetListado()
         {
             string url = "https://localhost:51913/api/Registro";
-            
-            
-            using (var http = new HttpClient())
+
+            HttpClientHandler clientHandler = new HttpClientHandler();
+            clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+
+
+            using (var http = new HttpClient(clientHandler))
             {
                     string request = await http.GetStringAsync(url);
 
@@ -209,7 +216,10 @@ namespace Microservicio_Persona.Aplication.Services
                 idsCurso.Add(x.CursoID);
             }
 
-            using (var http = new HttpClient())
+            HttpClientHandler clientHandler = new HttpClientHandler();
+            clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+
+            using (var http = new HttpClient(clientHandler))
             {
                 string url = "https://localhost:44308/api/Curso/GetCursosByLista";
                 var cursosJson = new StringContent(JsonConvert.SerializeObject(idsCurso), Encoding.UTF8, "application/json");
