@@ -10,6 +10,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Linq;
+using System.Net.Mail;
+using System.Net;
 
 namespace Microservicio_Persona.Aplication.Services
 {
@@ -35,29 +37,104 @@ namespace Microservicio_Persona.Aplication.Services
             _query= query;
         }
 
-
-
+        /*
+        public async Task<CursoCustomDTO> ObtenerCurso(int cursoId)
+        {
+            
+        }*/
 
         public async Task<EstudianteCurso> CreateRelacion(EstudianteCursoDTO relacion) 
         {
-            /*
-            Program p = new Program();
-            p.EnviarMailAsync().Wait();
-            */
-
-           var respuesta = await RestarCupoDeCurso(relacion.CursoID);
-
-
-            var entity = new EstudianteCurso
+            HttpClientHandler clientHandler = new HttpClientHandler();
+            clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+            CursoCustomDTO curso;
+            Profesor profesor;
+            int profesorId;
+            using (var http = new HttpClient(clientHandler))
             {
-                EstudianteCursoID = relacion.EstudianteCursoID,
-                CursoID = relacion.CursoID,
-                EstudianteID = relacion.EstudianteID,
-                Estado = relacion.Estado
-            };
-            _repository.Add<EstudianteCurso>(entity);
+                string link = "https://localhost:44308/api/Curso/GetAll";
+                var Uri = new Uri(link);
+                HttpResponseMessage response = await http.GetAsync(Uri);
+                response.EnsureSuccessStatusCode();
+                var stringContentAsync = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                List<CursoCustomDTO> cursos = JsonConvert.DeserializeObject<List<CursoCustomDTO>>(stringContentAsync);
+                curso = cursos.FirstOrDefault(x => x.CursoId == relacion.CursoID);
 
-            return entity;
+                profesorId = Int32.Parse(curso.Profesor);
+                profesor = _repository.Traer<Profesor>().FirstOrDefault(x => x.ProfesorId == profesorId);
+
+                var estudiante = _repository.Traer<Estudiante>().FirstOrDefault(x => x.EstudianteID == relacion.EstudianteID);
+
+
+
+                string SendersAddress = "web.aprendiendo.com@gmail.com";
+                string ReceiversAddress = estudiante.Email;
+                const string SendersPassword = "WAprendiendo3";
+                string subject = "Inscripcion a "+ curso.Nombre;
+
+                string texto = "<table style='width: 100%; height: auto; padding: 0; margin:0; border-collapse: collapse;'>" +
+                    "<tr>" +
+                        "<td style='background-color: #02b8b8'>" +
+                            "<div style='color: #34495e; margin: 4% 10% 2%; text-align: center;font-family: sans-serif'>" +
+                                "<h2 style='color: #f7f7f7; margin: 0 0 7px'>Hola "+ estudiante.Nombre +" "+estudiante.Apellido +","+"</h2>" +
+                                "<h2 style='color: #ffffff; margin: 0 0 7px'>¡SALUDOS DE APRENDIENDO.COM!</h2>" +
+                            "</div>" +
+                        "</td>" +
+                    "</tr>" +
+                    "<tr>" +
+                    "<td style='background-color: #ecf0f1'> "+
+                        "<div style='color: #34495e; margin: 4%; text-align: center;font-family: sans-serif'>" +
+                            "<h2 style='color: #000000;'>Tu inscripción al curso "+ curso.Nombre + " fue exitosa!</h2>" +
+                            "<div style='width: 100%;max-width: 600px;height: 100%;text-align: center; display: inline-block;'>" +
+                                "<img style='width: 100%; height: 100%; margin: 0;padding: 0;' src='"+ curso.Imagen + "'>" +
+                                "<div style='max-width: 600px; margin: 0;padding: 0; width: 100%; text-align: center;color: black;'>" +
+                                    "<h3 style='margin: 0;padding: 0;margin-top: 10px; '>Profesor del curso: "+ profesor.Nombre + " "+ profesor.Apellido + "</h3>" +
+                                 "</div>" +
+                            "</div>" +
+                        "</div>" +
+                        "<div style='width: 100%; text-align: center; height: auto;min-height: 60px; '>" +
+                             "<a style='text-decoration: none; font-family: Arial, Helvetica, sans-serif ;border-radius: 5px; padding: 10px; color: white; background-color: #02b8b8' href='http://127.0.0.1:5503/pages/Login.html'>Visitar Nuestra Web</a>" +
+                        "</div>" +
+                    "</td>" +
+	                "</tr>"+
+                "</table>";
+
+
+                string body = texto;
+
+                SmtpClient smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(SendersAddress, SendersPassword),
+                    Timeout = 5000
+
+                };
+                MailMessage message = new MailMessage(SendersAddress, ReceiversAddress, subject, body);
+                message.IsBodyHtml = true;
+                smtp.Send(message);
+
+
+
+
+
+                var entity = new EstudianteCurso
+                {
+                    EstudianteCursoID = relacion.EstudianteCursoID,
+                    CursoID = relacion.CursoID,
+                    EstudianteID = relacion.EstudianteID,
+                    Estado = relacion.Estado
+                };
+                _repository.Add<EstudianteCurso>(entity);
+
+                return entity;
+            }
+
+
+            
         }
 
         public async Task<CursoRespondeAsyncDTO> RestarCupoDeCurso(int idCurso)
