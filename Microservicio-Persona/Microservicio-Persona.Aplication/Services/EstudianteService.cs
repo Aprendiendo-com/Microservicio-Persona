@@ -36,7 +36,8 @@ namespace Microservicio_Persona.Aplication.Services
                 Apellido = estudiante.Apellido,
                 Email = estudiante.Email,
                 Legajo = estudiante.Legajo,
-                UsuarioId = estudiante.UsuarioId
+                UsuarioId = estudiante.UsuarioId,
+                DNI = estudiante.DNI
             };
             _repository.Add<Estudiante>(entity);
             Console.WriteLine("creando alumno");

@@ -167,7 +167,7 @@ namespace Microservicio_Persona.Aplication.Services
 
 
 
-            public List<ResponseGetEstudiantesByCurso> GetEstudiantesByCurso(int cursoId)
+        public List<ResponseGetEstudiantesByCurso> GetEstudiantesByCurso(int cursoId)
         {
 
            return  _query.GetEstudiantesByCurso(cursoId);
