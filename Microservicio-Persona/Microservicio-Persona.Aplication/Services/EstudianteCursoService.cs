@@ -26,6 +26,9 @@ namespace Microservicio_Persona.Aplication.Services
         Task<List<CursoCompletoDTO>> GetDetalleCursos(int id);
 
 
+        void CambiarEstado(int idCurso, int idEstudiante, string estado);
+
+
     }
     public class EstudianteCursoService : IEstudianteCursoService
     {
@@ -237,5 +240,25 @@ namespace Microservicio_Persona.Aplication.Services
 
 
         }
+
+
+
+        public void CambiarEstado(int idCurso, int idEstudiante, string estado)
+        {
+            var registros = _repository.Traer<EstudianteCurso>().Where(x => x.CursoID == idCurso);
+
+            foreach (var registro in registros)
+            {
+                if (registro.EstudianteID == idEstudiante)
+                {
+                    registro.Estado = estado;
+                    _repository.Update(registro);
+                }
+            }
+        }
+
+
+
+
     }
 }
