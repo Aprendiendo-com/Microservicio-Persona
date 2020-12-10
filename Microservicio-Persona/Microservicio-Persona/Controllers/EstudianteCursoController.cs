@@ -134,5 +134,24 @@ namespace Microservicio_Persona.Controllers
 
         }
 
+
+
+
+
+        [HttpPut]
+        public IActionResult CambiarEstado(int idCurso, int idEstudiante, string estado)
+        {
+            try
+            {
+                _service.CambiarEstado(idCurso, idEstudiante, estado);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
     }
 }
